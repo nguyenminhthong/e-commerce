@@ -1,0 +1,11 @@
+# Visual Studio
+.vs
+
+# Build results
+Build/
+obj/
+bin/
+App_Data/
+Plugins/
+wwwroot/
+node_modules/
