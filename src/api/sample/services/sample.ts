@@ -1,0 +1,5 @@
+/**
+ * sample service
+ */
+
+export default () => ({});
