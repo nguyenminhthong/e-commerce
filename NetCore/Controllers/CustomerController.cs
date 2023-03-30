@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NetCore.JsonResult;
 
 namespace NetCore.Controllers
 {
@@ -8,10 +9,9 @@ namespace NetCore.Controllers
     public class CustomerController : ControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> GetCustomer()
         {
-            var result = new JsonResult(new { message = "Hello" });
-            return await Task.FromResult(result);
+            return new RawJsonResult<String>("Hello");
         }
     }
 }

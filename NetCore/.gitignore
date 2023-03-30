@@ -2,7 +2,7 @@
 .vs
 
 # Build results
-Build/
+
 obj/
 bin/
 App_Data/

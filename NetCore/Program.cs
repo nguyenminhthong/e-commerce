@@ -15,6 +15,7 @@ services.AddStackExchangeRedisCache(configRedisCache);
 
 services.AddCors();
 
+services.AddRouting(option => option.LowercaseUrls = true);
 // ==================================================
 // Configure application
 // ==================================================
