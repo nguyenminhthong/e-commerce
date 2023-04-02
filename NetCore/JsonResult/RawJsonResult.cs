@@ -19,7 +19,7 @@ namespace NetCore.JsonResult
                 Data = pResult,
                 message = pMessage
             };
-            
+
             _statusCode = pStatusCode;
         }
 

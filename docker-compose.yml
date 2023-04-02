@@ -1,7 +1,10 @@
 version: '3.6'
 services:
   api-ecommerce:
-    build: ./NetCore
+    # build: ./NetCore
+    build:
+      context: ./NetCore
+      dockerfile: Dockerfile
     ports:
       - "32771:80"
       - "32770:443"
