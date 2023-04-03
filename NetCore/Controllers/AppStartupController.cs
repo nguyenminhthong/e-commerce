@@ -42,11 +42,11 @@ namespace NetCore.Controllers
             var NavigatorItems = new List<NavigatorItem>()
             {
                 new NavigatorItem() { Id= 1, Title ="Trang chủ", Link = "/"},
-                new NavigatorItem() { Id= 2, Title ="Sản phẩm", Link = "/product", Childrens = childrens},
-                new NavigatorItem() { Id= 3, Title ="Khuyến mãi", Link = "/promotion"},
-                new NavigatorItem() { Id= 4, Title ="Chính sách", Link = "/privacy"},
-                new NavigatorItem() { Id= 5, Title ="Tin tức", Link = "/blog"},
-                new NavigatorItem() { Id= 6, Title ="Liên hệ", Link = "/contact"}
+                new NavigatorItem() { Id= 2, Title ="Sản phẩm", Link = "/san-pham", Childrens = childrens},
+                new NavigatorItem() { Id= 3, Title ="Khuyến mãi", Link = "/khuyen-mai"},
+                new NavigatorItem() { Id= 4, Title ="Chính sách", Link = "/chinh-sach"},
+                new NavigatorItem() { Id= 5, Title ="Tin tức", Link = "/tin-tuc"},
+                new NavigatorItem() { Id= 6, Title ="Liên hệ", Link = "/lien-he"}
             };
 
             var model = new StartupModel()

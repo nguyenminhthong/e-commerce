@@ -1,8 +1,8 @@
 version: '3.6'
 services:
   api-ecommerce:
-    #build: ./NetCore
-    image: thongnm/api-ecommerce:v1
+    build: ./NetCore
+    # image: thongnm/api-ecommerce:v1
     container_name: api-ecommerce
     ports:
       - "32771:80"
