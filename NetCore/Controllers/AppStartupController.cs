@@ -55,6 +55,8 @@ namespace NetCore.Controllers
                 NavigatorItems = NavigatorItems
             };
 
+            await Task.Delay(500);
+
             return RawJsonResult<StartupModel>.Send(model);
         }
     }

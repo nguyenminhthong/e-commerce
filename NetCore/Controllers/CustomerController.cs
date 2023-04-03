@@ -11,6 +11,8 @@ namespace NetCore.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCustomer()
         {
+            await Task.Delay(500);
+
             return new RawJsonResult<String>("Hello");
         }
     }

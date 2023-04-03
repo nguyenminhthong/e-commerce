@@ -24,6 +24,8 @@ namespace NetCore.Controllers
             
             };
 
+            await Task.Delay(500);
+
             return new RawJsonResult<IEnumerable<ProductFeature>>(products);
         }
 
@@ -32,6 +34,28 @@ namespace NetCore.Controllers
         public async Task<IActionResult> Index()
         {
             var products = new List<Product>();
+
+            await Task.Delay(500);
+
+            return new RawJsonResult<IEnumerable<Product>>(products);
+        }
+
+        [HttpGet]
+        [Route("api/productSales", Name = "GetProductSales")]
+        public async Task<IActionResult> GetProductSales()
+        {
+            var products = new List<Product>() {
+                new Product() { ProductId = 1, ProductName="Crab Pool Security", ProductImage = "/assets/upload/featured/feature-1.jpg", Price = 6500000, HasSale= true, SalePrice = 350000, SalePer= 20},
+                new Product() { ProductId = 2, ProductName="Crab Pool Security", ProductImage = "/assets/upload/featured/feature-2.jpg", Price = 6500000, HasSale= true, SalePrice = 350000, SalePer= 20},
+                new Product() { ProductId = 3, ProductName="Crab Pool Security", ProductImage = "/assets/upload/featured/feature-3.jpg", Price = 6500000, HasSale= true, SalePrice = 350000, SalePer= 20},
+                new Product() { ProductId = 4, ProductName="Crab Pool Security", ProductImage = "/assets/upload/featured/feature-4.jpg", Price = 6500000, HasSale= true, SalePrice = 350000, SalePer= 20},
+                new Product() { ProductId = 5, ProductName="Crab Pool Security", ProductImage = "/assets/upload/featured/feature-5.jpg", Price = 6500000, HasSale= true, SalePrice = 350000, SalePer= 20},
+                new Product() { ProductId = 6, ProductName="Crab Pool Security", ProductImage = "/assets/upload/featured/feature-6.jpg", Price = 6500000, HasSale= true, SalePrice = 350000, SalePer= 20},
+                new Product() { ProductId = 7, ProductName="Crab Pool Security", ProductImage = "/assets/upload/featured/feature-7.jpg", Price = 6500000, HasSale= true, SalePrice = 350000, SalePer= 20},
+                new Product() { ProductId = 8, ProductName="Crab Pool Security", ProductImage = "/assets/upload/featured/feature-8.jpg", Price = 6500000, HasSale= true, SalePrice = 350000, SalePer= 20}
+            };
+
+            await Task.Delay(500);
 
             return new RawJsonResult<IEnumerable<Product>>(products);
         }
