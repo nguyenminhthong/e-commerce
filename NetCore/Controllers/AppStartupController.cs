@@ -57,10 +57,5 @@ namespace NetCore.Controllers
 
             return RawJsonResult<StartupModel>.Send(model);
         }
-
-        [HttpGet]
-        public async Task<IActionResult> Test() {
-            return RawJsonResult<string>.Send("Hello");
-        }
     }
 }

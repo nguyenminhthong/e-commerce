@@ -1,10 +1,9 @@
 version: '3.6'
 services:
   api-ecommerce:
-    # build: ./NetCore
-    build:
-      context: ./NetCore
-      dockerfile: Dockerfile
+    #build: ./NetCore
+    image: thongnm/api-ecommerce:v1
+    container_name: api-ecommerce
     ports:
       - "32771:80"
       - "32770:443"
@@ -14,4 +13,4 @@ services:
       Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
       Kestrel__Certificates__Default__Password: pa55word
     volumes:
-      - C:\Users\THONGNM\.aspnet\https:/https:ro
+      - ./certificate:/https:ro

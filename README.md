@@ -9,4 +9,17 @@ dotnet dev-certs https --trust
 # 2. Command line thiết lập Certificate cho ứng dụng
 dotnet user-secrets -p aspnetapp\aspnetapp.csproj set "Kestrel:Certificates:Development:Password" "<CREDENTIAL_PLACEHOLDER>"
 
-# 3. Thực hiện tạo image bằng docker-compose
+# ===========================================================
+Các bước build image docker và push to hub
+# 1. Build image
+    docker build -t image [ImageName]:[tag] [Dockerfile]
+    - ImageName: tên của image docker cần build
+    - Tag: Đánh dấu version của image
+    - Đường dẫn của Dockerfile
+# 2. Tạo repository
+    docker tag api-ecommerce:v1 thongnm/api-ecommerce:v1
+# 3. Thực hiện push Image đã tạo ở local lên Docker Hub
+    docker push thongnm/api-ecommerce:v1
+# ===========================================================
+# Build docketr Image và Container
+    docker-compose up -d
