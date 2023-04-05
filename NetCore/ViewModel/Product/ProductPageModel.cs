@@ -2,10 +2,10 @@
 
 namespace NetCore.ViewModel.Product
 {
-    public record ProductPage
+    public record ProductPageModel
     {
         public CategoryModel Category { get; set; }
 
-        public IList<Product> Products { get; set; }
+        public IList<ProductModel> Products { get; set; }
     }
 }
