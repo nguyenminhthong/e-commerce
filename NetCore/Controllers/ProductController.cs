@@ -52,6 +52,7 @@ namespace NetCore.Controllers
 
         [HttpGet]
         [Route("products", Name = "GetProducts")]
+        [ProducesResponseType(typeof(ProductModel), 200)]
         public async Task<IActionResult> Index()
         {
 
