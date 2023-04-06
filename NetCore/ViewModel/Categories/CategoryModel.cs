@@ -6,7 +6,7 @@
 
         public string Link { get; set; } = "";
 
-        public string Title { get; set; } = "";
+        public string Name { get; set; } = "";
 
         public bool HasChildren { get; set; }
 

@@ -51,15 +51,15 @@ namespace NetCore.Controllers
         }
 
         [HttpGet]
-        [Route("products", Name = "GetProducts")]
+        [Route("outstanding", Name = "GetProductOutStanding")]
         [ProducesResponseType(typeof(ProductModel), 200)]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> GetProductOutStanding()
         {
 
-            var Vegetables = new CategoryModel() { Id = 1, Title = "Vegetables", Link = "/" };
-            var FreshMeat = new CategoryModel() { Id = 2, Title = "Fresh Meat", Link = "/" };
-            var Fastfood = new CategoryModel() { Id = 3, Title = "Fastfood", Link = "/" };
-            var Oatmeal = new CategoryModel() { Id = 4, Title = "Oatmeal", Link = "/" };
+            var Vegetables = new CategoryModel() { Id = 1, Name = "Vegetables", Link = "/" };
+            var FreshMeat = new CategoryModel() { Id = 2, Name = "Fresh Meat", Link = "/" };
+            var Fastfood = new CategoryModel() { Id = 3, Name = "Fastfood", Link = "/" };
+            var Oatmeal = new CategoryModel() { Id = 4, Name = "Oatmeal", Link = "/" };
 
             var products = new List<ProductModel>() {
                 new ProductModel() { Id = 1, Name="Crab Pool Security", ImagePath = "/assets/upload/featured/feature-1.jpg", Price = 6500000, HasDiscountsApplied= true, OldPrice = 350000, SalePer= 20},
@@ -69,7 +69,8 @@ namespace NetCore.Controllers
                 new ProductModel() { Id = 5, Name="Crab Pool Security", ImagePath = "/assets/upload/featured/feature-5.jpg", Price = 6500000, HasDiscountsApplied= true, OldPrice = 350000, SalePer= 20},
                 new ProductModel() { Id = 6, Name="Crab Pool Security", ImagePath = "/assets/upload/featured/feature-6.jpg", Price = 6500000, HasDiscountsApplied= true, OldPrice = 350000, SalePer= 20},
                 new ProductModel() { Id = 7, Name="Crab Pool Security", ImagePath = "/assets/upload/featured/feature-7.jpg", Price = 6500000, HasDiscountsApplied= true, OldPrice = 350000, SalePer= 20},
-                new ProductModel() { Id = 8, Name="Crab Pool Security", ImagePath = "/assets/upload/featured/feature-8.jpg", Price = 6500000, HasDiscountsApplied= true, OldPrice = 350000, SalePer= 20}
+                new ProductModel() { Id = 8, Name="Crab Pool Security", ImagePath = "/assets/upload/featured/feature-8.jpg", Price = 6500000, HasDiscountsApplied= true, OldPrice = 350000, SalePer= 20},
+                new ProductModel() { Id = 9, Name="Crab Pool Security", ImagePath = "/assets/upload/featured/feature-5.jpg", Price = 6500000, HasDiscountsApplied= true, OldPrice = 350000, SalePer= 20}
             };
 
             var productPages = new List<ProductPageModel>()

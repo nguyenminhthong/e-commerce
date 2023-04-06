@@ -7,8 +7,11 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-# COPY ["NetCore.csproj", "NetCore/"]
+
+COPY ["NetCore.csproj", "NetCore/"]
+
 COPY . NetCore/
+
 RUN dotnet restore "NetCore/NetCore.csproj"
 COPY . .
 WORKDIR "/src/NetCore"
@@ -21,3 +24,8 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "NetCore.dll"]
+
+# For Test
+# EXPOSE 80
+# RUN dotnet build --configuration Release --no-restore
+# ENTRYPOINT ["dotnet", "watch", "run", "--urls", "http://*:80"]
