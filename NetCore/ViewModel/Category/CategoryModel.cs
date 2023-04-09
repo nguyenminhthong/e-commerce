@@ -8,8 +8,6 @@
 
         public string Name { get; set; } = "";
 
-        public bool HasChildren { get; set; }
-
-        public IList<CategoryModel>? Childrens { get; set; }
+        public string ImageUrl { get; set; } = "";
     }
 }
