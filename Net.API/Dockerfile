@@ -8,22 +8,22 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 
-COPY ["NetCore.csproj", "NetCore/"]
+COPY ["Net.API.csproj", "NetCore/"]
 
 COPY . NetCore/
 
-RUN dotnet restore "NetCore/NetCore.csproj"
+RUN dotnet restore "NetCore/Net.API.csproj"
 COPY . .
 WORKDIR "/src/NetCore"
-RUN dotnet build "NetCore.csproj" -c Release -o /app/build
+RUN dotnet build "Net.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "NetCore.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Net.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "NetCore.dll"]
+ENTRYPOINT ["dotnet", "Net.API.dll"]
 
 # For Test
 # EXPOSE 80
