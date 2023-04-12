@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Net.Core\Net.Core.csproj" />
-    <ProjectReference Include="..\Net.Data\Net.Data.csproj" />
-    <ProjectReference Include="..\Net.Domain\Net.Domain.csproj" />
   </ItemGroup>
 
 </Project>
