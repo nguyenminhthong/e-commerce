@@ -25,28 +25,28 @@ namespace NetCore.Controllers
                 new CategoryModel() {Id = 9, Name = "Fresh Bananas", Link = "/"}
             };
 
-            var childrens = new List<NavigatorItem>()
+            var childrens = new List<NavigatorModel>()
             {
-                new NavigatorItem() {Id = 1, Name = "Fresh Meat", Link = "/"},
-                new NavigatorItem() {Id = 2, Name = "Vegetables", Link = "/"},
-                new NavigatorItem() {Id = 3, Name = "Fruit & Nut Gifts", Link = "/"},
-                new NavigatorItem() {Id = 4, Name = "Fresh Berries", Link = "/"},
-                new NavigatorItem() {Id = 5, Name = "Ocean Foods", Link = "/"},
-                new NavigatorItem() {Id = 6, Name = "Butter & Eggs", Link = "/"},
-                new NavigatorItem() {Id = 7, Name = "Fastfood", Link = "/"},
-                new NavigatorItem() {Id = 8, Name = "Oatmeal", Link = "/"},
-                new NavigatorItem() {Id = 9, Name = "Fresh Bananas", Link = "/"}
+                new NavigatorModel() {Id = 1, Name = "Fresh Meat", Link = "/"},
+                new NavigatorModel() {Id = 2, Name = "Vegetables", Link = "/"},
+                new NavigatorModel() {Id = 3, Name = "Fruit & Nut Gifts", Link = "/"},
+                new NavigatorModel() {Id = 4, Name = "Fresh Berries", Link = "/"},
+                new NavigatorModel() {Id = 5, Name = "Ocean Foods", Link = "/"},
+                new NavigatorModel() {Id = 6, Name = "Butter & Eggs", Link = "/"},
+                new NavigatorModel() {Id = 7, Name = "Fastfood", Link = "/"},
+                new NavigatorModel() {Id = 8, Name = "Oatmeal", Link = "/"},
+                new NavigatorModel() {Id = 9, Name = "Fresh Bananas", Link = "/"}
             };
 
 
-            var NavigatorItems = new List<NavigatorItem>()
+            var NavigatorItems = new List<NavigatorModel>()
             {
-                new NavigatorItem() { Id= 1, Name ="Trang chủ", Link = "/"},
-                new NavigatorItem() { Id= 2, Name ="Sản phẩm", Link = "/danh-muc-san-pham", Childrens = childrens},
-                new NavigatorItem() { Id= 3, Name ="Khuyến mãi", Link = "/khuyen-mai"},
-                new NavigatorItem() { Id= 4, Name ="Chính sách", Link = "/chinh-sach"},
-                new NavigatorItem() { Id= 5, Name ="Tin tức", Link = "/tin-tuc"},
-                new NavigatorItem() { Id= 6, Name ="Liên hệ", Link = "/lien-he"}
+                new NavigatorModel() { Id= 1, Name ="Trang chủ", Link = "/"},
+                new NavigatorModel() { Id= 2, Name ="Sản phẩm", Link = "/danh-muc-san-pham", Childrens = childrens},
+                new NavigatorModel() { Id= 3, Name ="Khuyến mãi", Link = "/khuyen-mai"},
+                new NavigatorModel() { Id= 4, Name ="Chính sách", Link = "/chinh-sach"},
+                new NavigatorModel() { Id= 5, Name ="Tin tức", Link = "/tin-tuc"},
+                new NavigatorModel() { Id= 6, Name ="Liên hệ", Link = "/lien-he"}
             };
 
             var model = new StartupModel()

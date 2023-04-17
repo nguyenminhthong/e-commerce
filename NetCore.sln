@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Core", "Net.Core\Net.Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Domain", "Net.Domain\Net.Domain.csproj", "{8752D420-AFA7-41C3-AFA6-69AF6D7FA145}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.Data", "Net.Data\Net.Data.csproj", "{67EF91B1-3310-4E5A-96A6-7E1D464A7B8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Data", "Net.Data\Net.Data.csproj", "{67EF91B1-3310-4E5A-96A6-7E1D464A7B8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Kafka", "Core.Kafka\Core.Kafka.csproj", "{A3F21C45-DD42-4B06-BCF2-D4A8A68E422B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{67EF91B1-3310-4E5A-96A6-7E1D464A7B8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67EF91B1-3310-4E5A-96A6-7E1D464A7B8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67EF91B1-3310-4E5A-96A6-7E1D464A7B8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3F21C45-DD42-4B06-BCF2-D4A8A68E422B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F21C45-DD42-4B06-BCF2-D4A8A68E422B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F21C45-DD42-4B06-BCF2-D4A8A68E422B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3F21C45-DD42-4B06-BCF2-D4A8A68E422B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

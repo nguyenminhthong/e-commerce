@@ -7,5 +7,6 @@ namespace Net.API.Controllers
     [ApiController]
     public class ProvincesController : ControllerBase
     {
+        
     }
 }
