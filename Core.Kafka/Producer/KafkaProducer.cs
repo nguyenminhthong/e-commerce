@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.Core
+namespace Core.Kafka.Producer
 {
-    public class BaseEntity
+    internal class KafkaProducer
     {
-        public int Id { get; set; }
     }
 }

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.Core
+namespace Net.Core.Configuration
 {
-    public class BaseEntity
-    {
-        public int Id { get; set; }
-    }
+    public record CacheConfig (
+        int DefaultCacheTime = 60
+    );
 }

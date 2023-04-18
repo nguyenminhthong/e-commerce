@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
+﻿using Microsoft.AspNetCore.Mvc;
 using NetCore.JsonResult;
-using NetCore.RequestModel;
 using NetCore.ViewModel.Categories;
 using NetCore.ViewModel.Product;
 

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.Core
+namespace Net.Services.Shipping
 {
-    public class BaseEntity
+    internal class ShipmentService
     {
-        public int Id { get; set; }
     }
 }

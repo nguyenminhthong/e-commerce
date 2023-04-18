@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.Core
+namespace Net.Event.Events
 {
-    public class BaseEntity
+    public interface IEventPublisher
     {
-        public int Id { get; set; }
+        public Task PublishAsync<TEvent>(TEvent @event);
     }
 }

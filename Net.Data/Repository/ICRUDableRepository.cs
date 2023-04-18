@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace Net.Data.Repository
 {
-    public interface IRepository<TEntity> where TEntity : BaseEntity
+    public interface ICRUDableRepository<TEntity> where TEntity : BaseEntity
     {
-        public Task InsertAsync(TEntity entity, bool publishEvent = true);
+        public Task CreateAsync(TEntity entity, bool publishEvent = true);
 
         public Task UpdateAsync(TEntity entity, bool publishEvent = true);
 
         public Task DeleteAsync(TEntity entity, bool publishEvent = true);
+
     }
 }

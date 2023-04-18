@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.Core.Infrastructure
+namespace Net.Domain.Discounts
 {
-    public interface IDependencyRegistrar
+    internal class Discount
     {
     }
 }

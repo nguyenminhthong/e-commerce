@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.Core
+namespace Net.Services.Order
 {
-    public class BaseEntity
+    internal interface IOrderService
     {
-        public int Id { get; set; }
     }
 }

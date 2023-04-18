@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.Core
+namespace Net.Event
 {
-    public class BaseEntity
+    public class EventPublisherExtensions
     {
-        public int Id { get; set; }
     }
 }

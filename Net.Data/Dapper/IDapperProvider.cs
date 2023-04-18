@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.Core.Events
+namespace Net.Data.Dapper
 {
-    public interface IEventPublisher
+    public interface IDapperProvider
     {
     }
 }

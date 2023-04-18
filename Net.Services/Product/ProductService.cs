@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.Core
+namespace Net.Services.Product
 {
-    public class BaseEntity
+    internal class ProductService
     {
-        public int Id { get; set; }
     }
+
+    public record ApiReturn (
+        
+        
+        );
 }

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.Core
+namespace Net.Services.WareHouse
 {
-    public class BaseEntity
+    internal class WareHouseService
     {
-        public int Id { get; set; }
     }
 }
