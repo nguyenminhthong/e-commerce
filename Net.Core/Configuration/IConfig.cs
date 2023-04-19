@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Net.Core.Configuration
 {
-    public record CacheConfig (
-        int DefaultCacheTime = 60
-    );
+    public interface IConfig
+    {
+        string Name => GetType().Name;
+
+        public int GetOrder() => 1;
+    }
 }

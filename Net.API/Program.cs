@@ -1,22 +1,13 @@
 using Microsoft.Extensions.Caching.StackExchangeRedis;
+using Net.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // ==================================================
 // Add services to the container.
 // ==================================================
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.ConfigureApplicationServices(builder);
 
-
-var services = builder.Services;
-
-services.AddStackExchangeRedisCache(configRedisCache);
-
-services.AddCors();
-
-services.AddRouting(option => option.LowercaseUrls = true);
 // ==================================================
 // Configure application
 // ==================================================

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Net.Core.Configuration
 {
-    public class DatabaseSetting
+    public class DatabaseSetting : IConfig
     {
         public string ConnectionString { get; set; } = string.Empty;
 

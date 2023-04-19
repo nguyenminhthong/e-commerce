@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Net.Domain.Orders
 {
-    internal class OrderItem
+    public class OrderItem
     {
     }
 }

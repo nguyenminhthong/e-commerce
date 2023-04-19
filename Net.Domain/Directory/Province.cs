@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.Domain.Customers
+namespace Net.Domain.Directory
 {
-    public class Customer : BaseEntity
+    public class Province : BaseEntity
     {
     }
 }

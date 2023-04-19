@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Net.Domain.Customers
 {
-    internal class CustomerRole
+    public class CustomerRole
     {
     }
 }
