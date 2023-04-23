@@ -10,6 +10,6 @@ namespace Net.Core.Configuration
     {
         string Name => GetType().Name;
 
-        public int GetOrder() => 1;
+        int GetOrder() => 1;
     }
 }

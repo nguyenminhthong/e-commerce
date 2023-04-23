@@ -1,6 +1,8 @@
-﻿namespace NetCore.ViewModel.Product
+﻿using Net.WebApiCore.Model;
+
+namespace NetCore.ViewModel.Product
 {
-    public record ProductModel
+    public record ProductModel : BaseModel
     {
         public int Id { get; set; }
 

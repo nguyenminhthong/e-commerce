@@ -1,6 +1,8 @@
-﻿namespace NetCore.ViewModel.Campaign
+﻿using Net.WebApiCore.Model;
+
+namespace NetCore.ViewModel.Campaign
 {
-    public class CampaignModel
+    public record CampaignModel : BaseModel
     {
         public int Id { get; set; }
 

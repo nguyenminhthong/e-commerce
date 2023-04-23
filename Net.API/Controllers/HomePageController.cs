@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using NetCore.JsonResult;
+﻿using Microsoft.AspNetCore.Mvc;
+using Net.WebApiCore.Controller;
 using NetCore.ViewModel.Categories;
 using NetCore.ViewModel.HomePage;
 using NetCore.ViewModel.Product;
@@ -8,8 +7,7 @@ using NetCore.ViewModel.Product;
 namespace NetCore.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class HomePageController : ControllerBase
+    public class HomePageController : ApiBaseController
     {
 
         [HttpGet]
@@ -49,7 +47,7 @@ namespace NetCore.Controllers
 
             await Task.Delay(100);
 
-            return RawJsonResult<HomePageModel>.Send(response);
+            return await Execute(response);
         }
     }
 }

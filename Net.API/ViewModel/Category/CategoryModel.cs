@@ -1,6 +1,8 @@
-﻿namespace NetCore.ViewModel.Categories
+﻿using Net.WebApiCore.Model;
+
+namespace NetCore.ViewModel.Categories
 {
-    public record CategoryModel
+    public record CategoryModel : BaseModel
     {
         public int Id { get; set; }
 

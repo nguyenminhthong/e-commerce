@@ -1,19 +1,17 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using NetCore.JsonResult;
+﻿using Microsoft.AspNetCore.Mvc;
+using Net.WebApiCore.Controller;
 
 namespace NetCore.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class CustomerController : ControllerBase
+    public class CustomerController : ApiBaseController
     {
         [HttpGet]
         public async Task<IActionResult> GetCustomer()
         {
             await Task.Delay(500);
 
-            return new RawJsonResult<String>("Hello");
+            return await Execute();
         }
     }
 }

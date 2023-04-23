@@ -1,8 +1,9 @@
-﻿using NetCore.ViewModel.Categories;
+﻿using Net.WebApiCore.Model;
+using NetCore.ViewModel.Categories;
 
 namespace NetCore.ViewModel.Startup
 {
-    public record StartupModel
+    public record StartupModel : BaseModel
     {
         public IList<CategoryModel> Categories { get; set; } = new List<CategoryModel>();
 

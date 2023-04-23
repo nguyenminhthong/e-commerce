@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Net.API.JsonResult;
-using NetCore.JsonResult;
+using Net.WebApiCore.JsonResult;
 
-namespace Net.API.Validator
+namespace Net.WebApiCore.Validator
 {
     public class ValidatorActionFilter : Attribute, IAsyncResultFilter
     {
@@ -17,14 +16,14 @@ namespace Net.API.Validator
                 var errors = context.ModelState.Where(x => x.Value.Errors.Any())
                                     .Select(x => ErrorMapping(x))
                                     .ToList();
-                context.Result = RawJsonResult<IEnumerable<ErrorModel>>.Send(errors);
+                context.Result = await RawJsonResult.BabRequest<IEnumerable<ErrorModel>>(errors);
             }
 
         }
 
         private ErrorModel ErrorMapping(KeyValuePair<String, ModelStateEntry> error)
         {
-            return new ErrorModel(error.Key, error.Value.Errors.Select(x => x.ErrorMessage).FirstOrDefault());
+            return new ErrorModel(error.Key, error.Value.Errors.Select(x => x.ErrorMessage).FirstOrDefault()?? "");
         }
     }
 }

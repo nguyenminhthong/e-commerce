@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.Core.Validator
+namespace Net.WebApiCore.Model
 {
-    public class BaseValidator<TModel>
+    public record BaseModel
     {
     }
 }

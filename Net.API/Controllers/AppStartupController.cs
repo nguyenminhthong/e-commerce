@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NetCore.JsonResult;
+using Net.WebApiCore.Controller;
 using NetCore.ViewModel.Categories;
 using NetCore.ViewModel.Startup;
 
 namespace NetCore.Controllers
 {
     [ApiController]
-    public class AppStartupController : ControllerBase
+    public class AppStartupController : ApiBaseController
     {
         [HttpGet]
         [Route("api/startup", Name = "startup")]
@@ -57,7 +57,7 @@ namespace NetCore.Controllers
 
             await Task.Delay(500);
 
-            return RawJsonResult<StartupModel>.Send(model);
+            return await Execute(model);
         }
     }
 }

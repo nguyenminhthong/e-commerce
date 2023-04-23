@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NetCore.JsonResult;
+using Net.WebApiCore.Controller;
 using NetCore.ViewModel.Categories;
 using NetCore.ViewModel.Product;
 
 namespace NetCore.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class ProductController : ControllerBase
+    [ApiController]public class ProductController : ApiBaseController
     {
         [HttpGet("product-feature")]
         public async Task<IActionResult> GetProductFeature()
@@ -26,7 +25,7 @@ namespace NetCore.Controllers
 
             await Task.Delay(500);
 
-            return RawJsonResult<IEnumerable<ProductModel>>.Send(products);
+            return await Execute(products);
         }
 
         [HttpGet]
@@ -46,7 +45,7 @@ namespace NetCore.Controllers
 
             await Task.Delay(500);
 
-            return RawJsonResult<IEnumerable<ProductModel>>.Send(products);
+            return await Execute(products);
         }
 
         [HttpGet]
@@ -68,8 +67,7 @@ namespace NetCore.Controllers
                 new ProductModel() { Id = 5, Name="Crab Pool Security", ImagePath = "/assets/upload/featured/feature-5.jpg", Price = 6500000, HasDiscountsApplied= true, OldPrice = 350000, SalePer= 20},
                 new ProductModel() { Id = 6, Name="Crab Pool Security", ImagePath = "/assets/upload/featured/feature-6.jpg", Price = 6500000, HasDiscountsApplied= true, OldPrice = 350000, SalePer= 20},
                 new ProductModel() { Id = 7, Name="Crab Pool Security", ImagePath = "/assets/upload/featured/feature-7.jpg", Price = 6500000, HasDiscountsApplied= true, OldPrice = 350000, SalePer= 20},
-                new ProductModel() { Id = 8, Name="Crab Pool Security", ImagePath = "/assets/upload/featured/feature-8.jpg", Price = 6500000, HasDiscountsApplied= true, OldPrice = 350000, SalePer= 20},
-                // new ProductModel() { Id = 9, Name="Crab Pool Security", ImagePath = "/assets/upload/featured/feature-5.jpg", Price = 6500000, HasDiscountsApplied= true, OldPrice = 350000, SalePer= 20}
+                new ProductModel() { Id = 8, Name="Crab Pool Security", ImagePath = "/assets/upload/featured/feature-8.jpg", Price = 6500000, HasDiscountsApplied= true, OldPrice = 350000, SalePer= 20}
             };
 
             var productPages = new List<ProductPageModel>()
@@ -83,7 +81,7 @@ namespace NetCore.Controllers
 
             await Task.Delay(500);
 
-            return RawJsonResult<IEnumerable<ProductPageModel>>.Send(productPages);
+            return await Execute(productPages);
         }
 
         [HttpGet, HttpPost]
@@ -115,7 +113,7 @@ namespace NetCore.Controllers
             };
 
             await Task.Delay(1000);
-            return RawJsonResult<IEnumerable<ProductModel>>.Send(products);
+            return await Execute(products);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.Core.Validator
+namespace Net.WebApiCore.Validator
 {
     public class BaseValidator
     {

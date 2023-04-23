@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Net.WebApiCore.Controller;
 
 namespace Net.API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class WarehousesController : ControllerBase
+    public class WarehousesController : ApiBaseController
     {
     }
 }

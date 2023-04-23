@@ -8,15 +8,6 @@ namespace Net.Core.Infrastructure
 {
     public class Singleton<T>
     {
-        private static T instance;
-
-        public static T Instance
-        {
-            get => instance;
-            set
-            {
-                instance = value;
-            }
-        }
+        public static T? Instance { get; set; }
     }
 }

@@ -2,11 +2,8 @@
 
 namespace Net.API.Controllers
 {
-    public class CategoriesController : Controller
+    public class CategoriesController : ControllerBase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+
     }
 }

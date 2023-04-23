@@ -1,8 +1,9 @@
-﻿using NetCore.ViewModel.Categories;
+﻿using Net.WebApiCore.Model;
+using NetCore.ViewModel.Categories;
 
 namespace NetCore.ViewModel.Product
 {
-    public record ProductPageModel
+    public record ProductPageModel : BaseModel
     {
         public CategoryModel Category { get; set; }
 

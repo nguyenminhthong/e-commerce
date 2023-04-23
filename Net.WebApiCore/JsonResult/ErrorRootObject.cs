@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Net.API.JsonResult
+namespace Net.WebApiCore.JsonResult
 {
     public class ErrorRootObject
     {

@@ -1,4 +1,4 @@
-﻿namespace Net.API.JsonResult
+﻿namespace Net.WebApiCore.JsonResult
 {
     public class ErrorModel
     {

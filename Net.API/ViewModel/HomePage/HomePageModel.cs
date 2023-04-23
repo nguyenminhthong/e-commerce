@@ -1,10 +1,11 @@
-﻿using NetCore.ViewModel.Campaign;
+﻿using Net.WebApiCore.Model;
+using NetCore.ViewModel.Campaign;
 using NetCore.ViewModel.Categories;
 using NetCore.ViewModel.Product;
 
 namespace NetCore.ViewModel.HomePage
 {
-    public record HomePageModel
+    public record HomePageModel : BaseModel
     {
         public IList<CampaignModel> campaigns { get; set; } = new List<CampaignModel>();
 

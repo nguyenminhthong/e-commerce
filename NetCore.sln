@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Data", "Net.Data\Net.Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Kafka", "Core.Kafka\Core.Kafka.csproj", "{A3F21C45-DD42-4B06-BCF2-D4A8A68E422B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.Event", "Net.Event\Net.Event.csproj", "{77DF3053-CBA7-4528-863F-83876BE19BD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Event", "Net.Event\Net.Event.csproj", "{77DF3053-CBA7-4528-863F-83876BE19BD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.WebApiCore", "Net.WebApiCore\Net.WebApiCore.csproj", "{D5EBA4E9-670A-43D6-A6D9-0FC55AD1E335}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{77DF3053-CBA7-4528-863F-83876BE19BD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77DF3053-CBA7-4528-863F-83876BE19BD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77DF3053-CBA7-4528-863F-83876BE19BD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5EBA4E9-670A-43D6-A6D9-0FC55AD1E335}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5EBA4E9-670A-43D6-A6D9-0FC55AD1E335}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5EBA4E9-670A-43D6-A6D9-0FC55AD1E335}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5EBA4E9-670A-43D6-A6D9-0FC55AD1E335}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
