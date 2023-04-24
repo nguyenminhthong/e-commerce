@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Net.Services.WareHouse
 {
-    internal class WareHouseService
+    internal class WareHouseService : IWareHouseService
     {
     }
 }

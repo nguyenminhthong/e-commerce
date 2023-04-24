@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Net.Services.Payments
 {
-    internal class PaymentService : IPaymentService
+    public interface IPaymentService
     {
     }
 }

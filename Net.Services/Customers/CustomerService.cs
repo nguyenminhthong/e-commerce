@@ -9,9 +9,4 @@ namespace Net.Services.Customers
     internal class CustomerService: ICustomerService
     {
     }
-
-    public interface ICustomerService
-    {
-
-    }
 }

@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace Net.Services.Product
 {
-    internal class ProductService
+    internal class ProductService : IProductService
     {
     }
-
-    public record ApiReturn (
-        
-        
-        );
 }

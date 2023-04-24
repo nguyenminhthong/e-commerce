@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.Services.Payments
+namespace Net.Services.Customers
 {
-    internal class PaymentService : IPaymentService
+    public interface ICustomerService
     {
     }
 }

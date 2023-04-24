@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Net.Services.Discount
 {
-    internal class DiscountService
+    internal class DiscountService : IDiscountService
     {
     }
 }
