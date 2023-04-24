@@ -20,10 +20,16 @@ namespace Net.API.Extensions
 
             foreach ( var config in configs)
             {
-                builder.Configuration.GetSection(config.Name).Bind(config, options => options.BindNonPublicProperties = true);
+                builder.Configuration.GetSection(config?.Name).Bind(config, options => options.BindNonPublicProperties = true);
             }
 
             services.AddSingleton(new AppSettings(configs));
+
+            // Create engine and configure service provider
+            var engine = EngineContext.Create();
+
+            engine.ConfigureServices(services, builder.Configuration);
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
              
             // Add All controller
@@ -37,6 +43,15 @@ namespace Net.API.Extensions
             services.AddCors();
 
             services.AddRouting(option => option.LowercaseUrls = true);
+        }
+
+        /// <summary>
+        /// Register HttpContextAccessor
+        /// </summary>
+        /// <param name="services">Collection of service descriptors</param>
+        public static void AddHttpContextAccessor(this IServiceCollection services)
+        {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         /// <summary>
