@@ -17,26 +17,21 @@ namespace Net.Services
 
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            // customer service
-            services.AddScoped<ICustomerService, CustomerService>();
-
-            // product service
-            services.AddScoped<IProductService, ProductService>();
-
-            // Discount service
-            services.AddScoped<IDiscountService, DiscountService>();
-
-            // Order service
-            services.AddScoped<IOrderService, OrderService>();
-
-            // Payment service
-            services.AddScoped<IPaymentService, PaymentService>();
-
-            // shipping service
-            services.AddScoped<IShipmentService, ShipmentService>();
-
-            // warehouse service
-            services.AddScoped<IWareHouseService, WareHouseService>();
+            services
+                // customer service
+                .AddScoped<ICustomerService, CustomerService>()
+                // product service
+                .AddScoped<IProductService, ProductService>()
+                // Discount service
+                .AddScoped<IDiscountService, DiscountService>()
+                // Order service
+                .AddScoped<IOrderService, OrderService>()
+                // Payment service
+                .AddScoped<IPaymentService, PaymentService>()
+                // shipping service
+                .AddScoped<IShipmentService, ShipmentService>()
+                // warehouse service
+                .AddScoped<IWareHouseService, WareHouseService>();
 
         }
     }

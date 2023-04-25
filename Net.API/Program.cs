@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Net.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,25 +12,11 @@ builder.Services.ConfigureApplicationServices(builder);
 // ==================================================
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//Configure the application HTTP request pipeline
+app.ConfigureRequestPipeline();
 
-app.UseCors(action =>
-{
-    action.WithHeaders("*");
-    action.WithOrigins("*");
-    action.AllowAnyHeader();
-    action.AllowAnyMethod();
-});
+// start all app engine if has exist config
+app.StartEngine();
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
+// start all services
 app.Run();

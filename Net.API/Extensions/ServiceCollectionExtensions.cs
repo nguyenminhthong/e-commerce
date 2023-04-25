@@ -14,6 +14,9 @@ namespace Net.API.Extensions
         /// <param name="builder"></param>
         public static void ConfigureApplicationServices(this IServiceCollection services, WebApplicationBuilder builder)
         {
+            // add accessor to HttpContext
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             var configs = StartupEngine.AllNeededStartup
                                         .Select(configType => (IConfig)Activator.CreateInstance(configType))
                                         .ToList();
@@ -30,7 +33,6 @@ namespace Net.API.Extensions
 
             engine.ConfigureServices(services, builder.Configuration);
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
              
             // Add All controller
             services.AddControllers();

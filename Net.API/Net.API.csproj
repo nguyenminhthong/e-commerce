@@ -18,11 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Libraries\Net.Core\Net.Core.csproj" />
     <ProjectReference Include="..\Libraries\Net.WebApiCore\Net.WebApiCore.csproj" />
-    <ProjectReference Include="..\Net.Core\Net.Core.csproj" />
     <ProjectReference Include="..\Net.Domain\Net.Domain.csproj" />
     <ProjectReference Include="..\Net.Services\Net.Services.csproj" />
-    <ProjectReference Include="..\Net.WebApiCore\Net.WebApiCore.csproj" />
   </ItemGroup>
 
 </Project>
