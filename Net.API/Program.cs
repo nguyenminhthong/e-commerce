@@ -35,13 +35,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-// ==================================================
-// Functionality 
-// ==================================================
-
-// Config connection for rediscache
-void configRedisCache(RedisCacheOptions options)
-{
-
-}

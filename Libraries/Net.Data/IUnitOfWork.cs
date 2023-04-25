@@ -1,7 +1,7 @@
 ﻿using Net.Core;
 using Net.Data.Repository;
 
-namespace Net.Data.UnitOfWork
+namespace Net.Data
 {
     public interface IUnitOfWork
     {

@@ -3,11 +3,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Net.Core.Configuration;
 using Net.Core.Infrastructure;
-using Net.Data.UnitOfWork;
 
 namespace Net.Data
 {
-    public class DataBaseStartup : IServiceStartup
+    public class DbStartup : IServiceStartup
     {
         public int Order => 10;
 
@@ -20,7 +19,7 @@ namespace Net.Data
                 options.UseSqlServer(dbConfig.ConnectionString);
             });
 
-            services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }
