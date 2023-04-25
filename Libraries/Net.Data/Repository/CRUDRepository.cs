@@ -3,14 +3,14 @@ using Net.Event.Events;
 
 namespace Net.Data.Repository
 {
-    internal class CRUDableRepository<TEntity> : BaseRepository<TEntity>, ICRUDableRepository<TEntity> where TEntity : BaseEntity
+    internal class CRUDRepository<TEntity> : BaseRepository<TEntity>, ICRUDRepository<TEntity> where TEntity : BaseEntity
     {
         #region Fields
         private readonly IEventPublisher? _eventPublisher;
         #endregion
 
         #region Ctor
-        public CRUDableRepository(AppDbContext appDbContext) : base(appDbContext)
+        public CRUDRepository(AppDbContext appDbContext) : base(appDbContext)
         {
             
         }

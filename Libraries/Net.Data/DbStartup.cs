@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Net.Core.Configuration;
 using Net.Core.Infrastructure;
 using Net.Data.Dapper;
+using Net.Data.Repository;
 
 namespace Net.Data
 {
@@ -17,18 +18,24 @@ namespace Net.Data
 
             var dbConfig = appSettings.Get<DatabaseConfig>();
 
+            // Database context for EntityFramework
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(dbConfig.ConnectionString);
             });
 
-            // IF Dapper Enable
+            // While Dapper Enable
             if (appSettings.Get<ApiConfig>().EnableDapper)
             {
-                services.AddScoped<IDapperProvider, DapperProvider>();
+                // Add dependence Dapper Context
+                services.AddScoped<IDapperContext, DapperContext>();
             }
 
+            // config UnitOfWork
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            // Config Repository Query with EntityFramework
+            services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
         }
     }
 }

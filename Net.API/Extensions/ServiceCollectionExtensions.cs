@@ -15,36 +15,22 @@ namespace Net.API.Extensions
         public static void ConfigureApplicationServices(this IServiceCollection services, WebApplicationBuilder builder)
         {
             // add accessor to HttpContext
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
 
-            var configs = StartupEngine.AllNeededStartup
-                                        .Select(configType => (IConfig)Activator.CreateInstance(configType))
-                                        .ToList();
+            //var configs = new List<IServiceStartup>();
 
-            foreach ( var config in configs)
-            {
-                builder.Configuration.GetSection(config?.Name).Bind(config, options => options.BindNonPublicProperties = true);
-            }
+            //foreach ( var config in configs)
+            //{
+            //    builder.Configuration.GetSection(config?.Name).Bind(config, options => options.BindNonPublicProperties = true);
+            //}
 
-            services.AddSingleton(new AppSettings(configs));
+            //services.AddSingleton(new AppSettings(configs));
 
             // Create engine and configure service provider
             var engine = EngineContext.Create();
 
+            // Config all nescessary dependencice for services provider
             engine.ConfigureServices(services, builder.Configuration);
-
-             
-            // Add All controller
-            services.AddControllers();
-
-            services.AddEndpointsApiExplorer();
-
-            services.AddSwaggerGen();
-
-            // Add Cors Policy
-            services.AddCors();
-
-            services.AddRouting(option => option.LowercaseUrls = true);
         }
 
         /// <summary>

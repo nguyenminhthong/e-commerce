@@ -21,6 +21,11 @@ namespace Net.Data
             _transaction = await _appDbContext.Database.BeginTransactionAsync();
         }
 
+        public async Task<IDbContextTransaction> CreateTransactionAsync()
+        {
+            return await _appDbContext.Database.BeginTransactionAsync();
+        }
+
         public async Task CommitAsync()
         {
             try
@@ -32,7 +37,7 @@ namespace Net.Data
                     await _transaction.CommitAsync();
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 if (_transaction != null)
                 {
@@ -59,9 +64,9 @@ namespace Net.Data
         }
 
 
-        public ICRUDableRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
+        public ICRUDRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
         {
-            return new CRUDableRepository<TEntity>(_appDbContext);
+            return new CRUDRepository<TEntity>(_appDbContext);
         }
     }
 }
