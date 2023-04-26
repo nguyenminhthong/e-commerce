@@ -10,7 +10,7 @@ namespace Net.WebApiCore.JsonResult
     internal class RawJsonResult: ActionResult
     {
         #region Field
-        public JsonDataResponse DataResponse { get; private set; } = new JsonDataResponse();
+        public ApiResponse DataResponse { get; private set; } = new ApiResponse();
         
         public int StatusCode { get; private set; } = 200;
         #endregion
@@ -32,9 +32,9 @@ namespace Net.WebApiCore.JsonResult
         {
             var res = new RawJsonResult();
 
-            res.DataResponse = new JsonDataResponse()
+            res.DataResponse = new ApiResponse()
             {
-                Message = StatusResponse.ERROR.ToString(),
+                Message = ApiStatus.ERROR.ToString(),
                 Error = errors
             };
 
@@ -46,8 +46,8 @@ namespace Net.WebApiCore.JsonResult
         public static async Task<IActionResult> Send()
         {
             var res = new RawJsonResult();
-            var _success = StatusResponse.SUCCESS;
-            res.DataResponse = new JsonDataResponse()
+            var _success = ApiStatus.SUCCESS;
+            res.DataResponse = new ApiResponse()
             {
                 Message = _success.GetValueString(),
             };
@@ -57,10 +57,10 @@ namespace Net.WebApiCore.JsonResult
             return await Task.FromResult(res);
         }
 
-        public static async Task<IActionResult> Send<T>(T pResponse, StatusResponse pMessage = StatusResponse.SUCCESS, int pStatusCode = 200) where T : class
+        public static async Task<IActionResult> Send<T>(T pResponse, ApiStatus pMessage = ApiStatus.SUCCESS, int pStatusCode = 200) where T : class
         {
             var res = new RawJsonResult();
-            res.DataResponse = new JsonDataResponse()
+            res.DataResponse = new ApiResponse()
             {
                 Data = pResponse,
                 Message = pMessage.GetValueString()

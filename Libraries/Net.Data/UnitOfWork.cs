@@ -8,8 +8,7 @@ namespace Net.Data
     {
         private IDbContextTransaction? _transaction;
 
-
-        private AppDbContext _appDbContext;
+        private readonly AppDbContext _appDbContext;
 
         public UnitOfWork(AppDbContext dbContext)
         {

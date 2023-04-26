@@ -7,7 +7,7 @@ namespace Net.WebApiCore.Controller
     [ApiController]
     public class ApiBaseController : ControllerBase
     {
-        protected async Task<IActionResult> Execute<T>(T pResponse, StatusResponse pMessage = StatusResponse.SUCCESS, int pStatusCode = 200) where T : class
+        protected async Task<IActionResult> Execute<T>(T pResponse, ApiStatus pMessage = ApiStatus.SUCCESS, int pStatusCode = 200) where T : class
         {
             return await RawJsonResult.Send(pResponse, pMessage, pStatusCode);
         }

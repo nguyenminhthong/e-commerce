@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Net.WebApiCore.JsonResult
 {
-    public enum StatusResponse
+    public enum ApiStatus
     {
         [EnumMember(Value = "success")]
         SUCCESS,
