@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Net.Core.Caching
 {
-    public interface ICacheManager
+    public class CacheKey
     {
     }
 }

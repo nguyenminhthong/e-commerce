@@ -34,7 +34,9 @@ namespace Net.Services.Customers
 
         public Task<Customer> GetCustomerByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var customer = _customerRepository.GetByIdAsync(id);
+
+            return customer;
         }
 
         #region Storage Customer

@@ -1,9 +1,4 @@
 ﻿using Net.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Net.Data.Repository
 {
@@ -16,6 +11,15 @@ namespace Net.Data.Repository
         /// </summary>
         IQueryable<TEntity> Table { get; }
 
+        #endregion
+
+        #region Method
+
+        Task<TEntity> GetByIdAsync(int? id);
+
+        Task<IEnumerable<TEntity>> GetAllAsync(Func<IQueryable<TEntity>, IQueryable<TEntity>>? func, bool includeDeleted = false);
+
+        Task<IPagedList<TEntity>> GetAllPagedAsync(Func<IQueryable<TEntity>, IQueryable<TEntity>>? func, int pageNumber, int pageSize, bool includeDelted = false);
         #endregion
     }
 }
