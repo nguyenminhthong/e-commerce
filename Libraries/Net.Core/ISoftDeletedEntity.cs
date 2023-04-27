@@ -12,6 +12,6 @@ namespace Net.Core
 
         public DateTime? DeletedDate { get; set; }
 
-        public string DeletedBy { get; set; }
+        public string? DeletedBy { get; set; }
     }
 }

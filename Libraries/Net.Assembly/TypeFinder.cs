@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace Net.Assembly
 {
-    public class TypeFinder : ITypeFinder
+    public class TypeFinder : AssemblyFinder, ITypeFinder
     {
         public IEnumerable<Type> FindClassesOfType<T>(bool onlyConcreteClasses = true)
         {
-            throw new NotImplementedException();
+            return this.FindClassesOfType(typeof(T), onlyConcreteClasses);
         }
 
         public IEnumerable<Type> FindClassesOfType(Type assignTypeFrom, bool onlyConcreteClasses = true)
         {
-            throw new NotImplementedException();
+            return new List<Type>();
         }
+
+        #region Private
+
+        #endregion
     }
 }

@@ -25,7 +25,8 @@ namespace Net.Data.Repository
 
         #region Method
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync(Func<IQueryable<TEntity>, IQueryable<TEntity>>? func, bool includeDeleted = false)
+        public async Task<IEnumerable<TEntity>> GetAllAsync(
+            Func<IQueryable<TEntity>, IQueryable<TEntity>>? func, bool includeDeleted = false)
         {
             var query = IncludeDetedFilter(Table, includeDeleted);
 
@@ -34,7 +35,9 @@ namespace Net.Data.Repository
             return await query.ToListAsync();
         }
 
-        public async Task<IPagedList<TEntity>> GetAllPagedAsync(Func<IQueryable<TEntity>, IQueryable<TEntity>>? func, int pageNumber, int pageSize, bool includeDeleted = false)
+        public async Task<IPagedList<TEntity>> GetAllPagedAsync(
+            Func<IQueryable<TEntity>, IQueryable<TEntity>>? func
+            , int pageNumber, int pageSize, bool includeDeleted = false)
         {
             var query = IncludeDetedFilter(Table, includeDeleted);
 

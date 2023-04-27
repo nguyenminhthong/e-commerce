@@ -1,4 +1,5 @@
-﻿using Net.Core.Configuration;
+﻿using Net.Assembly;
+using Net.Core.Configuration;
 using Net.Core.Enum;
 using Net.Core.Extensions;
 using Net.Core.Infrastructure;
@@ -17,7 +18,13 @@ namespace Net.API.Extensions
             // add accessor to HttpContext
             services.AddHttpContextAccessor();
 
-            //var configs = new List<IServiceStartup>();
+            // register dependence typefinder
+            var typeFinder = new TypeFinder();
+            services.AddSingleton<ITypeFinder>(typeFinder);
+
+            var configs = typeFinder.FindClassesOfType<IConfig>()
+                                    .Select(_type => (IConfig) Activator.CreateInstance(_type))
+                                    .ToList();
 
             //foreach ( var config in configs)
             //{
