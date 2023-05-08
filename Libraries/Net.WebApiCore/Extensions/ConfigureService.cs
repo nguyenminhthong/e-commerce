@@ -1,10 +1,15 @@
-﻿using Net.Assembly;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Net.Assembly;
 using Net.Core.Configuration;
-using Net.Core.Enum;
-using Net.Core.Extensions;
 using Net.Core.Infrastructure;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Net.API.Extensions
+namespace Net.WebApiCore.Extensions
 {
     public static partial class ServiceCollectionExtensions
     {
@@ -16,7 +21,7 @@ namespace Net.API.Extensions
         public static void ConfigureApplicationServices(this IServiceCollection services, WebApplicationBuilder builder)
         {
             // add accessor to HttpContext
-            services.AddHttpContextAccessor();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             // register dependence typefinder
             var typeFinder = new TypeFinder();
@@ -31,7 +36,7 @@ namespace Net.API.Extensions
 
             Parallel.ForEach(typeFinder.FindClassesOfType<IConfig>().Where(type => type != null).ToList(), (configType) =>
             {
-                var instance = (IConfig) Activator.CreateInstance(configType);
+                var instance = (IConfig)Activator.CreateInstance(configType);
                 if (instance != null)
                     configs.Add(instance);
             });
