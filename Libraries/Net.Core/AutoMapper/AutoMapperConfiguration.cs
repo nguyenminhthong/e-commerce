@@ -9,13 +9,13 @@ namespace Net.Core.AutoMapper
 {
     public class AutoMapperConfiguration
     {
-        private readonly MapperConfiguration _config;
+        public static MapperConfiguration? MapperConfig { get; private set; }
 
-        public IMapper Mapper { get; private set; }
+        public static IMapper? Mapper { get; private set; }
 
-        public AutoMapperConfiguration(MapperConfiguration mapperConfiguration)
+        public static void Init(MapperConfiguration mapperConfiguration)
         {
-            _config = mapperConfiguration;
+            MapperConfig = mapperConfiguration;
 
             Mapper = mapperConfiguration.CreateMapper();
         }

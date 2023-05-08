@@ -17,7 +17,7 @@ namespace Net.Core.Configuration
 
         #region Ctor
 
-        public AppSettings(IList<IConfig> configurations = null)
+        public AppSettings(IList<IConfig> configurations)
         {
             _configurations = configurations
                 ?.OrderBy(config => config.GetOrder())

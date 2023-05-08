@@ -2,33 +2,24 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Net.Assembly
 {
     public class AssemblyFinder
     {
-        #region Field
-        private readonly IFileProvider _fileProvider;
-        #endregion
+        private const string AssemblySkipLoadingPattern = "^System|^mscorlib|^Microsoft|^Autofac|^AutoMapper|^DotNetOpenAuth|^EntityFramework|^EPPlus|^FluentValidation|^MiniProfiler|^Mono.Math|^MvcContrib|^Newtonsoft|^NHibernate|^nunit|netstandard|Azure.*";
 
-        #region Properties
-        
-        public List<Type> Assemblies { get; private set; }
+        public string ClassNameSkipLoad { get; private set; } = "^System|^Microsoft|netstandard";
 
-        #endregion
-
-        #region Ctor
-        public AssemblyFinder()
+        protected IList<System.Reflection.Assembly> GetAssemblies()
         {
-            Assemblies = new List<Type>();
+            return AppDomain.CurrentDomain.GetAssemblies()
+                            .Where(assembly => !String.IsNullOrEmpty(assembly.FullName) && !Regex.IsMatch(assembly.FullName, AssemblySkipLoadingPattern)).Distinct().ToList();
         }
 
-        #endregion
-
-        protected void LoadAssemblies(string directoryPath)
-        {
-        }
     }
 }

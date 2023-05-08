@@ -11,19 +11,19 @@ namespace Net.WebApiCore.Validator
             if (context.ModelState.IsValid)
             {
                 await next();
-            } else
+            }
+            else
             {
                 var errors = context.ModelState.Where(x => x.Value.Errors.Any())
                                     .Select(x => ErrorMapping(x))
                                     .ToList();
                 context.Result = await RawJsonResult.BabRequest<IEnumerable<ErrorModel>>(errors);
             }
-
         }
 
         private ErrorModel ErrorMapping(KeyValuePair<String, ModelStateEntry> error)
         {
-            return new ErrorModel(error.Key, error.Value.Errors.Select(x => x.ErrorMessage).FirstOrDefault()?? "");
+            return new ErrorModel(error.Key, error.Value.Errors.Select(x => x.ErrorMessage).FirstOrDefault() ?? "");
         }
     }
 }

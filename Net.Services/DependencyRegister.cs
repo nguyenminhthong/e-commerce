@@ -32,7 +32,6 @@ namespace Net.Services
                 .AddScoped<IShipmentService, ShipmentService>()
                 // warehouse service
                 .AddScoped<IWareHouseService, WareHouseService>();
-
         }
     }
 }
