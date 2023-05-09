@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 
 namespace Net.WebApiCore.Extensions
 {
@@ -18,7 +20,7 @@ namespace Net.WebApiCore.Extensions
         /// </summary>
         /// <param name="services"></param>
         /// <param name="builder"></param>
-        public static void ConfigureApplicationServices(this IServiceCollection services, WebApplicationBuilder builder)
+        public static void ConfigureApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             // add accessor to HttpContext
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -43,7 +45,7 @@ namespace Net.WebApiCore.Extensions
 
             foreach (var config in configs)
             {
-                builder.Configuration.GetSection(config?.Name).Bind(config, options => options.BindNonPublicProperties = true);
+                configuration.GetSection(config?.Name).Bind(config, options => options.BindNonPublicProperties = true);
             }
 
             // create new instance appsetting
@@ -56,7 +58,7 @@ namespace Net.WebApiCore.Extensions
             var engine = EngineContext.Create();
 
             // Config all nescessary dependencice for services provider
-            engine.ConfigureServices(services, builder.Configuration);
+            engine.ConfigureServices(services, configuration);
         }
     }
 }

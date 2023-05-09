@@ -1,12 +1,12 @@
-using Net.API.Extensions;
+using Net.Core.Configuration;
+using Net.WebApiCore.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // ==================================================
 // Add services to the container.
 // ==================================================
-builder.Services.ConfigureApplicationServices(builder);
-
+builder.Services.ConfigureApplicationServices(builder.Configuration);
 // ==================================================
 // Configure application
 // ==================================================

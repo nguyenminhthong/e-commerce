@@ -27,14 +27,16 @@ namespace Net.Assembly
 
                 foreach (Type type in types)
                 {
-                    if (Regex.IsMatch(ClassNameSkipLoad, type.FullName?? "")) continue;
+                    if (Regex.IsMatch(ClassNameSkipLoad, type.FullName?? "")) 
+                        continue;
 
                     if (!assignTypeFrom.IsAssignableFrom(type) && (!assignTypeFrom.IsGenericTypeDefinition || !Matches(type, assignTypeFrom)))
                     {
                         continue;
                     }
 
-                    if (type.IsInterface) continue;
+                    if (type.IsInterface) 
+                        continue;
 
                     if (onlyConcreteClasses)
                     {

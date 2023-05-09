@@ -1,8 +1,15 @@
-﻿using Net.Core.Configuration;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Net.Core.Configuration;
 using Net.Core.Enum;
 using Net.Core.Infrastructure;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Net.API.Extensions
+namespace Net.WebApiCore.Extensions
 {
     public static partial class ServiceCollectionExtensions
     {
@@ -13,7 +20,7 @@ namespace Net.API.Extensions
         /// <param name="services">Collection of service descriptors</param>
         public static void AddHttpContextAccessor(this IServiceCollection services)
         {
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         /// <summary>
