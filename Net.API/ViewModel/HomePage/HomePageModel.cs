@@ -1,4 +1,4 @@
-﻿using Net.WebApiCore.Model;
+﻿using Net.APICore.Model;
 using NetCore.ViewModel.Campaign;
 using NetCore.ViewModel.Categories;
 using NetCore.ViewModel.Product;

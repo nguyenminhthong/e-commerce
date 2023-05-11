@@ -3,7 +3,7 @@ using Net.Core.AutoMapper;
 using Net.Domain.Products;
 using NetCore.ViewModel.Product;
 
-namespace Net.API.AutoMapper
+namespace Net.API.Configuration
 {
     public class MapperProfile : Profile, IOrderedMapperProfile
     {

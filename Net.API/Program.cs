@@ -1,5 +1,5 @@
 using Net.Core.Configuration;
-using Net.WebApiCore.Extensions;
+using Net.APICore.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -14,7 +14,7 @@ namespace Net.APICore.Validator
             }
             else
             {
-                var errors = context.ModelState.Where(x => x.Value.Errors.Any())
+                var errors = context.ModelState.Where(x => x.Value != null && x.Value.Errors.Any())
                                     .Select(x => ErrorMapping(x))
                                     .ToList();
                 context.Result = await RawJsonResult.BabRequest<IEnumerable<ErrorModel>>(errors);

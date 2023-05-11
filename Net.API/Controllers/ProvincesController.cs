@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Net.WebApiCore.Controller;
+using Net.APICore.Controller;
 
 namespace Net.API.Controllers
 {

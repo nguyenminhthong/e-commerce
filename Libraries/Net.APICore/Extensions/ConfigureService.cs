@@ -23,7 +23,7 @@ namespace Net.APICore.Extensions
         public static void ConfigureApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             // add accessor to HttpContext
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
 
             // register dependence typefinder
             var typeFinder = new TypeFinder();
@@ -45,7 +45,7 @@ namespace Net.APICore.Extensions
 
             foreach (var config in configs)
             {
-                configuration.GetSection(config?.Name).Bind(config, options => options.BindNonPublicProperties = true);
+                configuration.GetSection(config.Name).Bind(config, options => options.BindNonPublicProperties = true);
             }
 
             // create new instance appsetting

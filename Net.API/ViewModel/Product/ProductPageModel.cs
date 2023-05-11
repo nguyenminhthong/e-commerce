@@ -1,4 +1,4 @@
-﻿using Net.WebApiCore.Model;
+﻿using Net.APICore.Model;
 using NetCore.ViewModel.Categories;
 
 namespace NetCore.ViewModel.Product

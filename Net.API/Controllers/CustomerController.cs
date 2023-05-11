@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Net.WebApiCore.Controller;
+using Net.APICore.Controller;
 
 namespace NetCore.Controllers
 {

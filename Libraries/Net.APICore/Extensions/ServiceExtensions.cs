@@ -20,7 +20,7 @@ namespace Net.APICore.Extensions
         /// <param name="services">Collection of service descriptors</param>
         public static void AddHttpContextAccessor(this IServiceCollection services)
         {
-            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         /// <summary>
