@@ -40,13 +40,11 @@ namespace Net.APICore.Extensions
             {
                 var instance = (IConfig)Activator.CreateInstance(configType);
                 if (instance != null)
+                {
                     configs.Add(instance);
+                    configuration.GetSection(instance.Name).Bind(instance, options => options.BindNonPublicProperties = true);
+                }
             });
-
-            foreach (var config in configs)
-            {
-                configuration.GetSection(config.Name).Bind(config, options => options.BindNonPublicProperties = true);
-            }
 
             // create new instance appsetting
             var appsettings = new AppSettings(configs);

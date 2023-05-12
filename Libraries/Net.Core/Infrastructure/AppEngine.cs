@@ -21,6 +21,9 @@ namespace Net.Core.Infrastructure
         /// <param name="configuration"></param>
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
+            //register engine
+            services.AddSingleton<IEngine>(this);
+
             var typeFinder = Singleton<ITypeFinder>.Instance;
 
             var startupConfigurations = typeFinder.FindClassesOfType<IServiceStartup>();
@@ -28,11 +31,14 @@ namespace Net.Core.Infrastructure
             //create and sort instances of startup configurations
             var instances = startupConfigurations
                 .Select(startup => (IServiceStartup)Activator.CreateInstance(startup))
-                .OrderBy(startup => startup.Order);
+                .OrderBy(startup => startup?.Order);
 
             //configure services
             foreach (var instance in instances)
-                instance.ConfigureServices(services, configuration);
+                instance?.ConfigureServices(services, configuration);
+
+            //register mapper configurations
+            AddAutoMapper();
         }
 
         /// <summary>
@@ -41,9 +47,19 @@ namespace Net.Core.Infrastructure
         /// <param name="application"></param>
         public void ConfigureRequestPipeline(IApplicationBuilder application)
         {
+            //find startup configurations provided by other assemblies
+            var typeFinder = Singleton<ITypeFinder>.Instance;
+            var startupConfigurations = typeFinder.FindClassesOfType<IAppBuilderStartup>();
 
+            //create and sort instances of startup configurations
+            var instances = startupConfigurations
+                .Select(startup => (IAppBuilderStartup)Activator.CreateInstance(startup))
+                .OrderBy(startup => startup.Order);
+
+            //configure request pipeline
+            foreach (var instance in instances)
+                instance.Configure(application);
         }
-
 
         #region Private
 
