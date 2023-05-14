@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Net.APICore.Validator
 {
-    public class BaseValidator<TModel> : AbstractValidator<TModel> where TModel : BaseModel
+    public abstract class BaseValidator<TModel> : AbstractValidator<TModel> where TModel : BaseModel
     {
     }
 }

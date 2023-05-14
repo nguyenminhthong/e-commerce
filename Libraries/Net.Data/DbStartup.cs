@@ -10,7 +10,7 @@ namespace Net.Data
 {
     public class DbStartup : IServiceStartup
     {
-        public int Order => 10;
+        public int Order => 2000;
 
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {

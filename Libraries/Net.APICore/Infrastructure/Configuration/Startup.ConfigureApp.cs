@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.APICore.Extensions
+namespace Net.APICore.Infrastructure.Configuration
 {
-    public static partial class ApplicationBuilderExtensions
+    public static class ConfigureApplication
     {
         public static void ConfigureRequestPipeline(this IApplicationBuilder application)
         {

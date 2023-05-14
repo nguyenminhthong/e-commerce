@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 
-namespace Net.WebApiCore.Extensions
+namespace Net.APICore.Infrastructure.Configuration
 {
-    public static partial class ServiceCollectionExtensions
+    public static class ConfigureService
     {
         /// <summary>
         /// 
@@ -23,7 +23,7 @@ namespace Net.WebApiCore.Extensions
         public static void ConfigureApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             // add accessor to HttpContext
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
 
             // register dependence typefinder
             var typeFinder = new TypeFinder();
@@ -40,13 +40,11 @@ namespace Net.WebApiCore.Extensions
             {
                 var instance = (IConfig)Activator.CreateInstance(configType);
                 if (instance != null)
+                {
                     configs.Add(instance);
+                    configuration.GetSection(instance.Name).Bind(instance, options => options.BindNonPublicProperties = true);
+                }
             });
-
-            foreach (var config in configs)
-            {
-                configuration.GetSection(config?.Name).Bind(config, options => options.BindNonPublicProperties = true);
-            }
 
             // create new instance appsetting
             var appsettings = new AppSettings(configs);

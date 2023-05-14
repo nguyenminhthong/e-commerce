@@ -9,7 +9,7 @@ namespace Net.Core.Infrastructure
 {
     public  interface IAppBuilderStartup
     {
-        public void Configure(IApplicationBuilder application);
+        public void Configure(IApplicationBuilder app);
 
         int Order { get; }
     }

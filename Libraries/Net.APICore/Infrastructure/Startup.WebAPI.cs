@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Net.Core.Configuration;
 using Net.Core.Enum;
@@ -9,25 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.APICore.Extensions
+namespace Net.APICore.Infrastructure
 {
-    public static partial class ServiceCollectionExtensions
+    public class Startup : IServiceStartup
     {
+        public int Order => 600;
 
-        /// <summary>
-        /// Register HttpContextAccessor
-        /// </summary>
-        /// <param name="services">Collection of service descriptors</param>
-        public static void AddHttpContextAccessor(this IServiceCollection services)
-        {
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-        }
-
-        /// <summary>
-        /// Add config distribute cache
-        /// </summary>
-        /// <param name="services">Collection of service descriptors</param>
-        public static void AddDistributedCache(this IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             var appSettings = Singleton<AppSettings>.Instance;
             var apiConfig = appSettings.Get<ApiConfig>();

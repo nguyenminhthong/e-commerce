@@ -8,15 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Net.WebApiCore.Infrastructure
+namespace Net.APICore.Infrastructure
 {
-    public class RoutingStartup : IAppBuilderStartup
+    public class EndpointStartup : IAppBuilderStartup
     {
         public int Order => 1000;
 
-        public void Configure(IApplicationBuilder application)
+        public void Configure(IApplicationBuilder app)
         {
-            
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

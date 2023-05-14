@@ -54,11 +54,11 @@ namespace Net.Core.Infrastructure
             //create and sort instances of startup configurations
             var instances = startupConfigurations
                 .Select(startup => (IAppBuilderStartup)Activator.CreateInstance(startup))
-                .OrderBy(startup => startup.Order);
+                .OrderBy(startup => startup?.Order);
 
             //configure request pipeline
             foreach (var instance in instances)
-                instance.Configure(application);
+                instance?.Configure(application);
         }
 
         #region Private

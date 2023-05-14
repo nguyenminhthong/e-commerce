@@ -11,7 +11,7 @@ namespace Net.Core.AutoMapper
     {
         public static MapperConfiguration? MapperConfig { get; private set; }
 
-        public static IMapper? Mapper { get; private set; }
+        public static IMapper Mapper { get; private set; }
 
         public static void Init(MapperConfiguration mapperConfiguration)
         {
