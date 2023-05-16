@@ -11,6 +11,7 @@ namespace Net.Core.Enum
     {
         [EnumMember(Value ="memory")]
         Memory,
+
         [EnumMember(Value = "redis")]
         Redis
     }

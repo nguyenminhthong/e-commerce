@@ -25,7 +25,7 @@ namespace NetCore.Controllers
 
             await Task.Delay(500);
 
-            return await Execute(products);
+            return await Json(products);
         }
 
         [HttpGet]
@@ -45,7 +45,7 @@ namespace NetCore.Controllers
 
             await Task.Delay(500);
 
-            return await Execute(products);
+            return await Json(products);
         }
 
         [HttpGet]
@@ -81,7 +81,7 @@ namespace NetCore.Controllers
 
             await Task.Delay(500);
 
-            return await Execute(productPages);
+            return await Json(productPages);
         }
 
         [HttpGet, HttpPost]
@@ -113,7 +113,7 @@ namespace NetCore.Controllers
             };
 
             await Task.Delay(1000);
-            return await Execute(products);
+            return await Json(products);
         }
     }
 }

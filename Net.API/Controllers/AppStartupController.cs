@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Net.APICore.Authorization.Attributes;
 using Net.APICore.Controller;
 using NetCore.ViewModel.Categories;
 using NetCore.ViewModel.Startup;
@@ -6,10 +9,12 @@ using NetCore.ViewModel.Startup;
 namespace NetCore.Controllers
 {
     [ApiController]
+    [Authorize(Policy = JwtBearerDefaults.AuthenticationScheme)]
     public class AppStartupController : ApiBaseController
     {
         [HttpGet]
         [Route("api/startup", Name = "startup")]
+        [AuthorizePermission("Public")]
         public async Task<IActionResult> GetStartupData()
         {
             var Categories = new List<CategoryModel>()
@@ -57,7 +62,7 @@ namespace NetCore.Controllers
 
             await Task.Delay(500);
 
-            return await Execute(model);
+            return await Json(model);
         }
     }
 }

@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace Net.APICore.Infrastructure
 {
@@ -18,12 +20,13 @@ namespace Net.APICore.Infrastructure
 
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
+           // add Swagger
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Web API for eCommerce",
-                    Version = "v1"
+                    Version = "v1",
                 });
 
                 options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
@@ -31,7 +34,8 @@ namespace Net.APICore.Infrastructure
                     In = ParameterLocation.Header,
                     Description = "Please enter into field the word 'Bearer' following by space and JWT",
                     Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = JwtBearerDefaults.AuthenticationScheme                    
                 });
 
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -58,14 +62,18 @@ namespace Net.APICore.Infrastructure
 
         public void Configure(IApplicationBuilder app)
         {
-            app.UseSwagger();
+            var env = app.ApplicationServices.GetService<IWebHostEnvironment>();
 
-            app.UseSwaggerUI(options =>
+            if (env.IsDevelopment())
             {
-                options.RoutePrefix = "swagger";
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API (v1)");
-            });
+                app.UseSwagger();
 
+                app.UseSwaggerUI(options =>
+                {
+                    options.RoutePrefix = "swagger";
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API (v1)");
+                });
+            }
         }
     }
 }

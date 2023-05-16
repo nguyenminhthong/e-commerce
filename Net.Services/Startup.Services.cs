@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Net.Core.Infrastructure;
+using Net.Core.Services;
+using Net.Services.Authentication;
 using Net.Services.Customers;
 using Net.Services.Discount;
 using Net.Services.Order;
@@ -11,13 +13,15 @@ using Net.Services.WareHouse;
 
 namespace Net.Services
 {
-    public class DependencyRegister : IServiceStartup
+    public class ServiceStartup : IServiceStartup
     {
         public int Order => 3000;
 
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services
+                // Token provider service
+                .AddScoped<ITokenProviderService, TokenProviderService>()
                 // customer service
                 .AddScoped<ICustomerService, CustomerService>()
                 // product service

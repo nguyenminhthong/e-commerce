@@ -47,7 +47,7 @@ namespace NetCore.Controllers
 
             await Task.Delay(100);
 
-            return await Execute(response);
+            return await Json(response);
         }
     }
 }

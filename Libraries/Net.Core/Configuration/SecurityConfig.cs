@@ -15,5 +15,7 @@ namespace Net.Core.Configuration
         public int ExpireDate { get; set; } = 1;
 
         public string PathLogin { get; set; } = "/auth/signin";
+
+        public string Algorithm { get; set; } = "HmacSha512";
     }
 }

@@ -6,18 +6,27 @@ using Net.APICore.Model;
 
 namespace Net.APICore.Controller
 {
-    [Authorize(Policy = JwtBearerDefaults.AuthenticationScheme, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [ApiController]
     public class ApiBaseController : ControllerBase
     {
-        protected async Task<IActionResult> Execute<T>(T pResponse, ApiStatus pMessage = ApiStatus.SUCCESS, int pStatusCode = 200) where T : class
-        {
-            return await RawJsonResult.Send(pResponse, pMessage, pStatusCode);
-        }
-
-        protected async Task<IActionResult> Execute()
+        protected async Task<IActionResult> Json()
         {
             return await RawJsonResult.Send();
         }
+        
+        protected async Task<IActionResult> Error(string error = "")
+        {
+            return await RawJsonResult.Error(error);
+        }
+
+        protected async Task<IActionResult> BadReq<T>(T errors)
+        {
+            return await RawJsonResult.BabRequest(errors);
+        }
+
+        protected async Task<IActionResult> Json<T>(T iResponse, ApiStatus iMessage = ApiStatus.SUCCESS, int iStatusCode = 200) where T : class
+        {
+            return await RawJsonResult.Send(iResponse, iMessage, iStatusCode);
+        }
+
     }
 }

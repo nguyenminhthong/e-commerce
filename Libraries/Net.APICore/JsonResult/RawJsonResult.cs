@@ -28,21 +28,6 @@ namespace Net.APICore.JsonResult
 
         #region Method
 
-        public static async Task<IActionResult> BabRequest<T>(T errors)
-        {
-            var res = new RawJsonResult();
-
-            res.DataResponse = new ApiResponse()
-            {
-                Message = ApiStatus.ERROR.ToString(),
-                Error = errors
-            };
-
-            res.StatusCode = 400;
-
-            return await Task.FromResult(res);
-        }
-
         public static async Task<IActionResult> Send()
         {
             var res = new RawJsonResult();
@@ -69,7 +54,36 @@ namespace Net.APICore.JsonResult
             res.StatusCode = pStatusCode;
 
             return await Task.FromResult(res);
-        } 
+        }
+
+        public static async Task<IActionResult> BabRequest<T>(T errors)
+        {
+            var res = new RawJsonResult();
+
+            res.DataResponse = new ApiResponse()
+            {
+                Message = ApiStatus.ERROR.GetValueString(),
+                Error = errors
+            };
+
+            res.StatusCode = 400;
+
+            return await Task.FromResult(res);
+        }
+
+        public static async Task<IActionResult> Error(string message)
+        {
+            var res = new RawJsonResult();
+
+            res.DataResponse = new ApiResponse()
+            {
+                Message = message
+            };
+
+            res.StatusCode = 500;
+
+            return await Task.FromResult(res);
+        }
         #endregion
 
     }

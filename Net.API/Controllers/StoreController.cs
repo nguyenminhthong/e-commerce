@@ -11,7 +11,7 @@ namespace Net.API.Controllers
         public async Task<IActionResult> Get()
         {
 
-            return await Execute();
+            return await Json();
         }
     }
 }

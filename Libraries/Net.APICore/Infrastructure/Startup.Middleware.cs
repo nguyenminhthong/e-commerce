@@ -21,11 +21,10 @@ namespace Net.APICore.Infrastructure
             var _securityConfig = appSetting.Get<SecurityConfig>();
 
             // use middleware to check token JWT
-            app.UseMiddleware<TokenProviderMiddleware>(new TokenOptions
+            app.UseMiddleware<AuthenticationMiddleware>(new TokenOptions
             {
                 Path = _securityConfig.PathLogin,
-                Expiration = TimeSpan.FromDays(_securityConfig.ExpireDate),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_securityConfig.SecurityKey)), SecurityAlgorithms.HmacSha256)
+                Expiration = TimeSpan.FromDays(_securityConfig.ExpireDate)
             });
         }
     }

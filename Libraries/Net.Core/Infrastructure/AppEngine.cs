@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Net.Assembly;
@@ -14,8 +15,14 @@ namespace Net.Core.Infrastructure
 {
     internal partial class AppEngine : IEngine
     {
+        #region Porperties
+
+        public virtual IServiceProvider ServiceProvider { get; protected set; }
+        #endregion
+
+        #region Configurate
         /// <summary>
-        /// 
+        /// Config serice collection
         /// </summary>
         /// <param name="services"></param>
         /// <param name="configuration"></param>
@@ -37,16 +44,20 @@ namespace Net.Core.Infrastructure
             foreach (var instance in instances)
                 instance?.ConfigureServices(services, configuration);
 
+            services.AddSingleton(services);
+
             //register mapper configurations
             AddAutoMapper();
         }
 
         /// <summary>
-        /// 
+        /// Config applicationbuilder
         /// </summary>
         /// <param name="application"></param>
         public void ConfigureRequestPipeline(IApplicationBuilder application)
         {
+            ServiceProvider = application.ApplicationServices;
+
             //find startup configurations provided by other assemblies
             var typeFinder = Singleton<ITypeFinder>.Instance;
             var startupConfigurations = typeFinder.FindClassesOfType<IAppBuilderStartup>();
@@ -60,8 +71,9 @@ namespace Net.Core.Infrastructure
             foreach (var instance in instances)
                 instance?.Configure(application);
         }
+        #endregion
 
-        #region Private
+        #region AutoMapper configure
 
         protected virtual void AddAutoMapper()
         {
@@ -71,7 +83,7 @@ namespace Net.Core.Infrastructure
 
             //create and sort instances of mapper configurations
             var instances = mapperConfigurations
-                .Select(mapperConfiguration => (IOrderedMapperProfile) Activator.CreateInstance(mapperConfiguration))
+                .Select(mapperConfiguration => (IOrderedMapperProfile)Activator.CreateInstance(mapperConfiguration))
                 .OrderBy(mapperConfiguration => mapperConfiguration?.Order);
 
             //create AutoMapper configuration
@@ -86,6 +98,38 @@ namespace Net.Core.Infrastructure
             //register
             AutoMapperConfiguration.Init(config);
         }
+        #endregion
+
+        #region Functionality
+
+        public T Resolve<T>(IServiceScope? scope) where T : class
+        {
+            return (T)Resolve(typeof(T), scope);
+        }
+
+        public object Resolve(Type type, IServiceScope? scope)
+        {
+            return GetServiceProvider(scope)?.GetService(type);
+        }
+        #endregion
+
+        #region Self function
+
+        /// <summary>
+        /// Get IServiceProvider
+        /// </summary>
+        /// <returns>IServiceProvider</returns>
+        protected IServiceProvider GetServiceProvider(IServiceScope? scope)
+        {
+            if (scope == null)
+            {
+                var accessor = ServiceProvider?.GetService<IHttpContextAccessor>();
+                var context = accessor?.HttpContext;
+                return context?.RequestServices ?? ServiceProvider;
+            }
+            return scope.ServiceProvider;
+        }
+
         #endregion
     }
 }
