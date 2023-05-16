@@ -22,10 +22,10 @@ namespace Net.Assembly
         {
             var loadedAssemblyNames = new List<string>();
 
-            foreach (var a in App.GetAssemblies())
+            foreach (var assembly in App.GetAssemblies())
             {
-                if (String.IsNullOrEmpty(a.FullName)) continue;
-                loadedAssemblyNames.Add(a.FullName);
+                if (String.IsNullOrEmpty(assembly.FullName) || Regex.IsMatch(assembly.FullName, AssemblySkipLoadingPattern)) continue;
+                loadedAssemblyNames.Add(assembly.FullName);
             }
 
             LoadMatchingAssemblies(GetBinDirectory(), loadedAssemblyNames);

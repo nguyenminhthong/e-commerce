@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Net.Core.Enum
 {
-    public enum SqlProvider
+    public enum DatabasePrivder
     {
-        [EnumMember(Value = "SqlServer")]
+        [EnumMember(Value = "sqlserver")]
         SqlServer,
 
-        [EnumMember(Value = "PostgreSQL")]
+        [EnumMember(Value = "postgresql")]
         PostgreSQL
     }
 }

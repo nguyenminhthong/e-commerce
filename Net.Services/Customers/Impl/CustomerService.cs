@@ -18,11 +18,11 @@ namespace Net.Services.Customers
         #endregion
 
         #region Ctor
-        //public CustomerService(IReadRepository<Customer> customerRepository, IUnitOfWork unitOfWork)
-        //{
-        //    _customerRepository = customerRepository;
-        //    _unitOfWork = unitOfWork;
-        //}
+        public CustomerService(IReadRepository<Customer> customerRepository, IUnitOfWork unitOfWork)
+        {
+            _customerRepository = customerRepository;
+            _unitOfWork = unitOfWork;
+        }
         #endregion
 
         #region For check token
@@ -53,7 +53,7 @@ namespace Net.Services.Customers
 
         public async Task<Customer> GetCustomerByIdAsync(int id)
         {
-            //var customer = _customerRepository.GetByIdAsync(id);
+            var customer = _customerRepository.GetByIdAsync(id);
 
             //return customer;
             return await Task.FromResult(new Customer());
@@ -69,19 +69,19 @@ namespace Net.Services.Customers
         /// <returns></returns>
         public async Task CreateCustomer(Customer customer)
         {
-            //using (var trans = await _unitOfWork.CreateTransactionAsync())
-            //{
-            //    try
-            //    {
-            //        await _unitOfWork.Repository<Customer>().CreateAsync(customer);
+            using (var trans = await _unitOfWork.CreateTransactionAsync())
+            {
+                try
+                {
+                    await _unitOfWork.Repository<Customer>().CreateAsync(customer);
 
-            //        await trans.CommitAsync();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        await trans.RollbackAsync();
-            //    }
-            //}
+                    await trans.CommitAsync();
+                }
+                catch (Exception ex)
+                {
+                    await trans.RollbackAsync();
+                }
+            }
 
             await Task.CompletedTask;
         }

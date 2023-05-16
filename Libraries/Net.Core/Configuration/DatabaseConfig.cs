@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Net.Core.Enum;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Net.Core.Configuration
@@ -8,6 +9,6 @@ namespace Net.Core.Configuration
         public string ConnectionString { get; set; } = string.Empty;
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public string DataProvider { get; set; } = string.Empty;
+        public DatabasePrivder DataProvider { get; set; } = DatabasePrivder.SqlServer;
     }
 }

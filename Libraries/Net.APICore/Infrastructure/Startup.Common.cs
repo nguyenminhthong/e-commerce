@@ -58,7 +58,10 @@ namespace Net.APICore.Infrastructure
                     opt.EnableEndpointRouting = false;
                 });
 
-            services.AddFluentValidationAutoValidation();
+            services.AddFluentValidationAutoValidation(options =>
+            {
+                var assemblies = mvcBuilder.PartManager.ApplicationParts.OfType<AssemblyPart>().Select(p => p.Assembly);
+            });
         }
     }
 

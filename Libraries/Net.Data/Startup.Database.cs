@@ -1,10 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Net.Core.Configuration;
+using Net.Core.Enum;
 using Net.Core.Infrastructure;
 using Net.Data.Dapper;
 using Net.Data.Repository;
+using System.Data;
+using System.Data.Common;
 
 namespace Net.Data
 {
@@ -14,28 +18,33 @@ namespace Net.Data
 
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            //var appSettings = Singleton<AppSettings>.Instance;
+            var appSettings = Singleton<AppSettings>.Instance;
 
-            //var dbConfig = appSettings.Get<DatabaseConfig>();
+            var dbConfig = appSettings.Get<DatabaseConfig>();
 
-            //// Database context for EntityFramework
-            //services.AddDbContext<AppDbContext>(options =>
-            //{
-            //    options.UseSqlServer(dbConfig.ConnectionString);
-            //});
+            // Database context for EntityFramework
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                if (DatabasePrivder.SqlServer.Equals(dbConfig.DataProvider))
+                {
+                    options.UseSqlServer(dbConfig.ConnectionString);
+                }
+            });
 
-            //// While Dapper Enable
-            //if (appSettings.Get<ApiConfig>().EnableDapper)
-            //{
-            //    // Add dependence Dapper Context
-            //    services.AddScoped<IDapperContext, DapperContext>();
-            //}
+            // While Dapper Enable
+            if (appSettings.Get<ApiConfig>().EnableDapper)
+            {
+                services.AddTransient<IDbConnection>(options => options.GetService<AppDbContext>().Database.GetDbConnection());
 
-            //// config UnitOfWork
-            //services.AddScoped<IUnitOfWork, UnitOfWork>();
+                // Add dependence Dapper Context
+                services.AddScoped<IDapperContext, DapperContext>();
+            }
 
-            //// Config Repository Query with EntityFramework
-            //services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
+            // config UnitOfWork
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            // Config Repository Query with EntityFramework
+            services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
         }
     }
 }
