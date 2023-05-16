@@ -14,3 +14,16 @@ services:
       Kestrel__Certificates__Default__Password: pa55word
     volumes:
       - ./certificate:/https:ro
+  mssql:
+    container_name: mssql_local
+    image: mcr.microsoft.com/mssql/server
+    environment:
+        SA_PASSWORD: "Passw@rd"
+        ACCEPT_EULA: "Y"
+    ports:
+        - 1433:1433
+  rediscache:
+    image: redis:6.2-alpine
+    container_name: redis_local
+    ports:
+        - '6379:6379'
