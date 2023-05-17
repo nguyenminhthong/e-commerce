@@ -1,15 +1,19 @@
-﻿namespace Net.APICore.JsonResult
-{
-    public class ErrorModel
-    {
-        public string ErrorField { get; set; }
+﻿using Newtonsoft.Json;
 
-        public string ErrorMessage { get; set; }
+namespace Net.APICore.JsonResult
+{
+    public record ErrorModel
+    {
+        [JsonProperty("field")]
+        public string Field { get; set; }
+
+        [JsonProperty("message")]
+        public string Message { get; set; }
 
         public ErrorModel(string field, string message)
         {
-            ErrorField = field;
-            ErrorMessage = message;
+            Field = field;
+            Message = message;
         }
     }
 }

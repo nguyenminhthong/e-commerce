@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Net.Core.Extensions;
 using Newtonsoft.Json;
 using System.Reflection;
@@ -11,9 +12,11 @@ namespace Net.APICore.JsonResult
     internal class RawJsonResult : ActionResult
     {
         #region Field
-        public ApiResponse DataResponse { get; private set; } = new ApiResponse();
+        [JsonProperty("response")]
+        public ApiResponse DataResponse { get; set; } = new ApiResponse();
 
-        public int StatusCode { get; private set; } = 200;
+        [JsonProperty("status")]
+        public int StatusCode { get; set; } = 200;
         #endregion
 
         #region Constructor
@@ -77,6 +80,10 @@ namespace Net.APICore.JsonResult
 
         public static async Task<IActionResult> BabRequest<T>(T errors)
         {
+            if (errors is IDictionary<string, string[]>)
+            {
+                return await BabRequest(errors as IDictionary<string, string[]>);
+            }
             var res = new RawJsonResult()
             {
                 DataResponse = new ApiResponse()
@@ -102,6 +109,34 @@ namespace Net.APICore.JsonResult
             };
 
             return await Task.FromResult(res);
+        }
+
+        #endregion
+
+        #region Private
+
+        private static async Task<IActionResult> BabRequest(IDictionary<string, string[]> iErrors)
+        {
+            var errors = iErrors.Where(x => x.Value != null && x.Value.Any())
+                                    .Select(x => ErrorMapping(x))
+                                    .ToList();
+
+            var res = new RawJsonResult()
+            {
+                DataResponse = new ApiResponse()
+                {
+                    Error = errors,
+                    Message = ApiStatus.ERROR.GetValueString()
+                },
+                StatusCode = 400
+            };
+
+            return await Task.FromResult(res);
+        }
+
+        private static ErrorModel ErrorMapping(KeyValuePair<string, string[]> error)
+        {
+            return new ErrorModel(error.Key, error.Value.FirstOrDefault());
         }
 
         #endregion

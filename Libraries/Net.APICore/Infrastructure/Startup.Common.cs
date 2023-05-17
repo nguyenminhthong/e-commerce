@@ -1,6 +1,8 @@
-﻿using FluentValidation.AspNetCore;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,11 +32,17 @@ namespace Net.APICore.Infrastructure
             });
 
             // Add All controler
-            services.AddControllers(options =>
+            services
+                .AddControllers(options =>
+                {
+                    options.SuppressAsyncSuffixInActionNames = false;
+                    options.EnableEndpointRouting = false;
+                    options.Filters.Add(new ValidatorActionFilter());
+                });
+            services.Configure<ApiBehaviorOptions>(options =>
             {
-                options.SuppressAsyncSuffixInActionNames = false;
+                options.SuppressModelStateInvalidFilter = true;
             });
-
             // Add Cors
             var appSetting = Singleton<AppSettings>.Instance;
             var _securityConfig = appSetting.Get<SecurityConfig>();
@@ -48,19 +56,6 @@ namespace Net.APICore.Infrastructure
                         .AllowAnyOrigin()
                         .AllowAnyOrigin();
                 });
-            });
-
-            // add FluentValidator
-            var mvcBuilder = services
-                .AddMvc(opt =>
-                {
-                    opt.Filters.Add(new ValidatorActionFilter());
-                    opt.EnableEndpointRouting = false;
-                });
-
-            services.AddFluentValidationAutoValidation(options =>
-            {
-                var assemblies = mvcBuilder.PartManager.ApplicationParts.OfType<AssemblyPart>().Select(p => p.Assembly);
             });
         }
     }
