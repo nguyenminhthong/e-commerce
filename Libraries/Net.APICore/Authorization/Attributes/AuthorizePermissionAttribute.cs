@@ -22,7 +22,8 @@ namespace Net.APICore.Authorization.Attributes
         {
             this.PermissionName = PermissionName;
             IgnoreFilter = ignore;
-        } 
+            Arguments = new object[] { PermissionName, ignore };
+        }
         #endregion
     }
 }

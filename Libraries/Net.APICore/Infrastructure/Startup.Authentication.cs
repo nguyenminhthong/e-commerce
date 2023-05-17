@@ -35,7 +35,7 @@ namespace Net.APICore.Infrastructure
                 {
                     options.SaveToken = true;
                     options.RequireHttpsMetadata = true;
-                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = false,
                         ValidateAudience = false,
