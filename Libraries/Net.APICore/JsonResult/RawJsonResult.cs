@@ -63,7 +63,7 @@ namespace Net.APICore.JsonResult
             return await Task.FromResult(res);
         }
 
-        public static async Task<IActionResult> Send<T>(T iData) where T : class
+        public static async Task<IActionResult> Send(dynamic iData)
         {
             var res = new RawJsonResult()
             {
@@ -78,7 +78,7 @@ namespace Net.APICore.JsonResult
             return await Task.FromResult(res);
         }
 
-        public static async Task<IActionResult> BabRequest<T>(T errors)
+        public static async Task<IActionResult> BabRequest(dynamic errors)
         {
             if (errors is IDictionary<string, string[]>)
             {
