@@ -12,28 +12,21 @@ namespace Net.APICore.Validator
     {
         public async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
         {
-            if (context.ModelState.IsValid)
+            // if validate request body has been error
+            if (!context.ModelState.IsValid)
             {
-                await next();
-            }
-            else
-            {
+                // get all message key and message content from errors
                 var errors = context.ModelState.Where(x => x.Value != null && x.Value.Errors.Any())
                                     .Select(x => ErrorMapping(x))
                                     .ToList();
-                var res = new RawJsonResult()
-                {
-                    DataResponse = new ApiResponse()
-                    {
-                        Error = errors,
-                        Message = ApiStatus.ERROR.GetValueString()
-                    },
-                    StatusCode = 400
-                };
 
-                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                context.HttpContext.Response.StatusCode = 400;
                 context.HttpContext.Response.ContentType = "application/json";
-                await context.HttpContext.Response.WriteAsync(JsonConvert.SerializeObject(res));
+                await context.HttpContext.Response.WriteAsJsonAsync(new {message = "error", errors = errors});
+            }
+            else
+            {
+                await next();
             }
         }
 

@@ -8,17 +8,17 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 
-COPY ["Net.API.csproj", "NetCore/"]
+COPY ["NetCore.sln", "WEBAPP/"]
 
-COPY . NetCore/
+COPY . WEBAPP/
 
-RUN dotnet restore "NetCore/Net.API.csproj"
+WORKDIR "/src/WEBAPP"
+RUN dotnet restore "NetCore.sln"
 COPY . .
-WORKDIR "/src/NetCore"
-RUN dotnet build "Net.API.csproj" -c Release -o /app/build
+RUN dotnet build "Net.API/Net.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Net.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Net.API/Net.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

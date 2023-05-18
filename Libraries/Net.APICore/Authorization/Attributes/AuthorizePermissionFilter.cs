@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,10 @@ namespace Net.APICore.Authorization.Attributes
 
             if (actionFilter is not null && actionFilter.IgnoreFilter)
                 return;
-            await Task.CompletedTask;
+
+            context.HttpContext.Response.ContentType = "application/json";
+            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+            await context.HttpContext.Response.WriteAsJsonAsync(new { message = "Request Forbiden" });
         }
         #endregion
     }

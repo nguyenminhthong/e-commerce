@@ -15,8 +15,8 @@ namespace Net.Services.Authentication
 
         public static string ClaimsIssuer => "Net.Api";
 
-        public static string UserIdClaim => "user_id";
+        public static string ClaimUserId => "user_id";
 
-        public static string UserGuidClaim => "user_guid";
+        public static string ClaimUserGuid => "user_guid";
     }
 }

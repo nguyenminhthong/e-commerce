@@ -46,29 +46,25 @@ namespace Net.APICore.Infrastructure.Middleware
 
             // Get token from header when request has been send 
             var token = context.Request.Headers.Authorization.FirstOrDefault<String>();
-            var _tokenProviderService = EngineContext.Current.Resolve<ITokenProviderService>();
 
             // If token is not blank then it's will check valid
             if (!String.IsNullOrWhiteSpace(token))
             {
+                var _tokenProviderService = EngineContext.Current.Resolve<ITokenProviderService>();
                 // check valid token
                 if (await _tokenProviderService.IsValidTokenAsync(token))
                 {
                     await _next(context);
                     return;
                 }
-                context.Response.ContentType = "application/json";
-                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-
-                var res = new TokenFailResponse
-                {
-                    Message = "Authentication Fail"
-                }; 
 
                 // send response data announce to client
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(res));
+                context.Response.ContentType = "application/json";
+                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                await context.Response.WriteAsJsonAsync(new {message = "Authentication Fail" });
                 return;
             }
+
             await _next(context);
         }
     }

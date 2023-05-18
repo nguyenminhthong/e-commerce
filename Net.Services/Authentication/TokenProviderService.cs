@@ -48,7 +48,7 @@ namespace Net.Services.Authentication
             {
                 var ClaimsIdentity = tokenValidationResult.ClaimsIdentity;
                 // If user identity existed in system
-                var userId = ClaimsIdentity.Claims.Where(claim => claim.Type.Equals(AuthenticationDefaults.UserIdClaim)).FirstOrDefault()?.Value;
+                var userId = ClaimsIdentity.Claims.Where(claim => claim.Type.Equals(AuthenticationDefaults.ClaimUserId)).FirstOrDefault()?.Value;
 
                 if (!String.IsNullOrEmpty(userId))
                 {
@@ -56,7 +56,7 @@ namespace Net.Services.Authentication
                 }
 
                 // Case Guest Signin
-                var userGuest = ClaimsIdentity.Claims.Where(claim => claim.Type.Equals(AuthenticationDefaults.UserGuidClaim)).FirstOrDefault()?.Value;
+                var userGuest = ClaimsIdentity.Claims.Where(claim => claim.Type.Equals(AuthenticationDefaults.ClaimUserGuid)).FirstOrDefault()?.Value;
                 if (!String.IsNullOrEmpty(userGuest))
                 {
                     return await customerService.IsExistGuestCustomerAsync(userGuest);
