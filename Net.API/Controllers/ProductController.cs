@@ -5,8 +5,7 @@ using NetCore.ViewModel.Product;
 
 namespace NetCore.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]public class ProductController : ApiBaseController
+    public class ProductController : ApiBaseController
     {
         [HttpGet("product-feature")]
         public async Task<IActionResult> GetProductFeature()

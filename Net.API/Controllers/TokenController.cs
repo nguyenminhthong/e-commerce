@@ -10,7 +10,6 @@ using System.Net;
 
 namespace Net.API.Controllers
 {
-    [ApiController]
     public class TokenController : ApiBaseController
     {
         #region Variable
@@ -27,7 +26,7 @@ namespace Net.API.Controllers
         #endregion
 
         [HttpPost]
-        [Route("/token", Name = "RequestToken")]
+        [Route("token", Name = "RequestToken")]
         [ProducesResponseType(typeof(TokenResponse), (int) HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorModel), (int) HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Create([FromBody] LoginModel model)
@@ -47,7 +46,7 @@ namespace Net.API.Controllers
         }
 
         [HttpPost]
-        [Route("/guest-token", Name = "GuestToken")]
+        [Route("guest-token", Name = "GuestToken")]
         [ProducesResponseType(typeof(TokenResponse), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> CreateGuest()
         {
@@ -59,7 +58,7 @@ namespace Net.API.Controllers
         }
 
         [HttpPost]
-        [Route("/token/check", Name = "ValidateToken")]
+        [Route("token/check", Name = "ValidateToken")]
         public async Task<IActionResult> CheckToken()
         {
             return await Json();

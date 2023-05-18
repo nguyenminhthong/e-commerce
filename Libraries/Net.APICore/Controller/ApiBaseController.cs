@@ -6,6 +6,8 @@ using Net.APICore.Model;
 
 namespace Net.APICore.Controller
 {
+    [Route("api")]
+    [ApiController]
     public class ApiBaseController : ControllerBase
     {
         protected async Task<IActionResult> Json()

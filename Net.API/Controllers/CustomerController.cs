@@ -3,7 +3,6 @@ using Net.APICore.Controller;
 
 namespace NetCore.Controllers
 {
-    [Route("api/[controller]")]
     public class CustomerController : ApiBaseController
     {
         [HttpGet]

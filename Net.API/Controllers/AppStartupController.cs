@@ -8,12 +8,11 @@ using NetCore.ViewModel.Startup;
 
 namespace NetCore.Controllers
 {
-    [ApiController]
     [Authorize(Policy = JwtBearerDefaults.AuthenticationScheme)]
     public class AppStartupController : ApiBaseController
     {
         [HttpGet]
-        [Route("api/startup", Name = "startup")]
+        [Route("startup", Name = "startup")]
         [AuthorizePermission("Public")]
         public async Task<IActionResult> GetStartupData()
         {

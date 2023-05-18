@@ -6,10 +6,8 @@ using NetCore.ViewModel.Product;
 
 namespace NetCore.Controllers
 {
-    [Route("api/[controller]")]
     public class HomePageController : ApiBaseController
     {
-
         [HttpGet]
         [ProducesResponseType(typeof(HomePageModel), 200)]
         public async Task<IActionResult> Index()
