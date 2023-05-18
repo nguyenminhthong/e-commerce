@@ -9,6 +9,7 @@ namespace NetCore.Controllers
     public class HomePageController : ApiBaseController
     {
         [HttpGet]
+        [Route("common")]
         [ProducesResponseType(typeof(HomePageModel), 200)]
         public async Task<IActionResult> Index()
         {
