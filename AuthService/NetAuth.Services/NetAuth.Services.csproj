@@ -1,20 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<NoWarn>CS8602</NoWarn>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.21.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.21.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\Net.Core\Net.Core.csproj" />
-    <ProjectReference Include="..\..\Libraries\Net.Data\Net.Data.csproj" />
-    <ProjectReference Include="..\..\OrderService\NetOrder.Domain\NetOrder.Domain.csproj" />
-    <ProjectReference Include="..\NetAuth.Domain\NetAuth.Domain.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Libraries\Net.Core\Net.Core.csproj" />
+		<ProjectReference Include="..\..\Libraries\Net.Data\Net.Data.csproj" />
+		<ProjectReference Include="..\..\OrderService\NetOrder.Domain\NetOrder.Domain.csproj" />
+		<ProjectReference Include="..\NetAuth.Domain\NetAuth.Domain.csproj" />
+	</ItemGroup>
 
 </Project>

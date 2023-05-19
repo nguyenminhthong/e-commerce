@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Net.Core.Infrastructure;
+using Net.Core.Services;
+using NetAuth.Services.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,7 @@ namespace NetAuth.Services
 
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<ITokenProviderService, TokenProviderService>();
         }
     }
 }
