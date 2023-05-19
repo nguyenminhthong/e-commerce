@@ -58,10 +58,11 @@ namespace Net.API.Controllers
         }
 
         [HttpPost]
-        [Route("token/check", Name = "ValidateToken")]
+        [Route("check-token", Name = "CheckToken")]
         public async Task<IActionResult> CheckToken()
         {
             return await Json();
         }
+
     }
 }

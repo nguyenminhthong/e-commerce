@@ -39,10 +39,12 @@ namespace Net.APICore.Infrastructure
                     options.EnableEndpointRouting = false;
                     options.Filters.Add(new ValidatorActionFilter());
                 });
+
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
+
             // Add Cors
             var appSetting = Singleton<AppSettings>.Instance;
             var _securityConfig = appSetting.Get<SecurityConfig>();

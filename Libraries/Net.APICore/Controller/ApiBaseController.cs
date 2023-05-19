@@ -20,14 +20,16 @@ namespace Net.APICore.Controller
             return await RawJsonResult.Send(iResponse);
         }
 
-        protected async Task<IActionResult> Error(string error = "")
+        protected async Task<IActionResult> Error()
         {
-            return await RawJsonResult.Error(error);
+            return await RawJsonResult.Error("");
         }
 
-        protected async Task<IActionResult> BadRequest<T>(T errors)
+        protected async Task<IActionResult> Error(dynamic error, int iStatusCode = 400)
         {
-            return await RawJsonResult.BabRequest(errors);
+            return await RawJsonResult.Error(error, iStatusCode);
         }
+
+        
     }
 }

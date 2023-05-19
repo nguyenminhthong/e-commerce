@@ -43,7 +43,7 @@ namespace Net.APICore.JsonResult
             response.ContentType = "application/json";
             response.StatusCode = StatusCode;
 
-            return response.WriteAsync(JsonConvert.SerializeObject(DataResponse));
+            return response.WriteAsJsonAsync(DataResponse);
         }
         #endregion
 
@@ -78,36 +78,22 @@ namespace Net.APICore.JsonResult
             return await Task.FromResult(res);
         }
 
-        public static async Task<IActionResult> BabRequest(dynamic errors)
+        public static async Task<IActionResult> Error(dynamic iErrors, int iStatusCode = 400)
         {
-            if (errors is IDictionary<string, string[]>)
+            if (iErrors is IDictionary<string, string[]>)
             {
-                return await BabRequest(errors as IDictionary<string, string[]>);
+                return await BabRequest(iErrors as IDictionary<string, string[]>);
             }
+
             var res = new RawJsonResult()
             {
                 DataResponse = new ApiResponse()
                 {
-                    Error = errors,
-                    Message = ApiStatus.ERROR.GetValueString()
+                    Message = iErrors
                 },
-                StatusCode = 400
+                StatusCode = iStatusCode
             };
-
-            return await Task.FromResult(res);
-        }
-
-        public static async Task<IActionResult> Error(string message)
-        {
-            var res = new RawJsonResult()
-            {
-                DataResponse = new ApiResponse()
-                {
-                    Message = message
-                },
-                StatusCode = 500
-            };
-
+            
             return await Task.FromResult(res);
         }
 
@@ -126,7 +112,7 @@ namespace Net.APICore.JsonResult
                 DataResponse = new ApiResponse()
                 {
                     Error = errors,
-                    Message = ApiStatus.ERROR.GetValueString()
+                    Message = ApiStatus.BADREQUEST.GetValueString()
                 },
                 StatusCode = 400
             };
@@ -134,9 +120,9 @@ namespace Net.APICore.JsonResult
             return await Task.FromResult(res);
         }
 
-        private static ErrorModel ErrorMapping(KeyValuePair<string, string[]> error)
+        private static ErrorModel ErrorMapping(KeyValuePair<string, string[]> iError)
         {
-            return new ErrorModel(error.Key, error.Value.FirstOrDefault());
+            return new ErrorModel(iError.Key, iError.Value.FirstOrDefault());
         }
 
         #endregion
