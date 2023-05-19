@@ -1,25 +1,17 @@
+using Net.APICore.Infrastructure.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.ConfigureApplicationServices(builder.Configuration);
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
+// Build WebApplication
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.ConfigureRequestPipeline();
 
-app.UseHttpsRedirection();
+app.StartEngine();
 
-app.UseAuthorization();
-
-app.MapControllers();
-
+// Start WebApplication
 app.Run();

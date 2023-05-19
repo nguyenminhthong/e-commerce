@@ -5,8 +5,8 @@ namespace NetCore.ViewModel.Product
 {
     public record ProductPageModel : BaseModel
     {
-        public CategoryModel Category { get; set; }
+        public CategoryModel Category { get; set; } = new ();
 
-        public IList<ProductModel> Products { get; set; }
+        public IList<ProductModel> Products { get; set; } = new List<ProductModel>();
     }
 }

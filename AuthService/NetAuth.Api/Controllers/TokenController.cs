@@ -1,14 +1,14 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
-using Net.API.ViewModel.Authentication;
 using Net.APICore.Controller;
 using Net.APICore.JsonResult;
-using Net.APICore.Model.Authentication;
 using Net.Core.Services;
+using NetAuth.Api.Models.Payload;
+using NetAuth.Api.Models.Request;
 using System.Net;
 
-namespace Net.API.Controllers
+namespace NetAuth.Api.Controllers
 {
     public class TokenController : ApiBaseController
     {
@@ -27,8 +27,8 @@ namespace Net.API.Controllers
 
         [HttpPost]
         [Route("token", Name = "RequestToken")]
-        [ProducesResponseType(typeof(TokenResponse), (int) HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(ErrorModel), (int) HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(TokenResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorModel), (int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Create([FromBody] LoginModel model)
         {
             var _validateResult = loginValidator.Validate(model);
@@ -40,7 +40,7 @@ namespace Net.API.Controllers
             }
             var res = new TokenResponse()
             {
-                
+
             };
             return await Json<TokenResponse>(res);
         }
@@ -63,6 +63,5 @@ namespace Net.API.Controllers
         {
             return await Json();
         }
-
     }
 }
