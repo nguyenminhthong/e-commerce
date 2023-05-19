@@ -1,5 +1,5 @@
+using Net.APICore.Infrastructure.Configuration;
 using Net.Core.Configuration;
-using NetOrder.ApiCore.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

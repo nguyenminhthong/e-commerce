@@ -1,6 +1,5 @@
 ﻿
 using Net.APICore.Model;
-using NetCore.Models.Categories;
 using NetOrder.Api.Models.Categories;
 
 namespace NetOrder.Api.Models.Startup
