@@ -1,7 +1,7 @@
 ﻿using Net.APICore.Model;
 using NetOrder.Api.Models.Categories;
 
-namespace NetCore.Models.Product
+namespace NetOrder.Api.Models.Product
 {
     public record ProductPageModel : BaseModel
     {

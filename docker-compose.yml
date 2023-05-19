@@ -14,7 +14,7 @@ services:
     volumes:
       - ./certificate:/https:ro
   order-service:
-    build: ./
+    build: ./OrderService
     # image: thongnm/api-ecommerce:v1
     container_name: order-service
     ports:

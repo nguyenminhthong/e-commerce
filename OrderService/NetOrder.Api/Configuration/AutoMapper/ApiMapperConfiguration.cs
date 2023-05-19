@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Net.Core.AutoMapper;
-using Net.Domain.Catalog;
-using NetCore.ViewModel.Categories;
+using NetOrder.Domain.Catalog;
+using NetOrder.Api.Models.Categories;
 
 namespace NetOrder.Api.Configuration.AutoMapper
 {

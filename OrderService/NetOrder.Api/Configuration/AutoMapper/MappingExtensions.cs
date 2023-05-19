@@ -1,6 +1,6 @@
 ﻿using Net.Core.AutoMapper;
 using Net.Core;
-using NetOrder.ApiCore.Model;
+using Net.APICore.Model;
 
 namespace NetOrder.Api.Configuration.AutoMapper
 {

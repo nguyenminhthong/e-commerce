@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NetOrder.ApiCore.Controller;
+using Net.APICore.Controller;
 
 namespace NetOrder.Api.Controllers
 {

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NetOrder.ApiCore.Controller;
-using NetCore.ViewModel.Categories;
-using NetCore.ViewModel.HomePage;
-using NetCore.ViewModel.Product;
+using Net.APICore.Controller;
+using NetOrder.Api.Models.Categories;
+using NetOrder.Api.Models.HomePage;
+using NetOrder.Api.Models.Product;
 
-namespace NetCore.Controllers
+namespace NetOrder.Api.Controllers
 {
     public class HomePageController : ApiBaseController
     {

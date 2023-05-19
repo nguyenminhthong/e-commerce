@@ -1,7 +1,7 @@
 ﻿
 using Net.APICore.Model;
 
-namespace NetCore.Models.Product
+namespace NetOrder.Api.Models.Product
 {
     public record ProductModel : BaseModel
     {

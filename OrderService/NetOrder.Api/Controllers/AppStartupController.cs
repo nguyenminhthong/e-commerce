@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NetOrder.ApiCore.Authorization.Attributes;
-using NetOrder.ApiCore.Controller;
-using NetCore.ViewModel.Categories;
-using NetCore.ViewModel.Startup;
+using Net.APICore.Authorization.Attributes;
+using Net.APICore.Controller;
+using NetOrder.Api.Models.Categories;
+using NetOrder.Api.Models.Startup;
 
 namespace NetCore.Controllers
 {

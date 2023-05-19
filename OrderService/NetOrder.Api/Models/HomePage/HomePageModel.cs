@@ -1,10 +1,10 @@
 ﻿
 using Net.APICore.Model;
-using NetCore.Models.Product;
+using NetOrder.Api.Models.Product;
 using NetOrder.Api.Models.Campaign;
 using NetOrder.Api.Models.Categories;
 
-namespace NetCore.Models.HomePage
+namespace NetOrder.Api.Models.HomePage
 {
     public record HomePageModel : BaseModel
     {

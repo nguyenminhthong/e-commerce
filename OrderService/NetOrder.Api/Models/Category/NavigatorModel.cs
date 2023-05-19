@@ -1,6 +1,6 @@
 ﻿using NetOrder.Api.Models.Categories;
 
-namespace NetCore.Models.Categories
+namespace NetOrder.Api.Models.Categories
 {
     public record NavigatorModel : CategoryModel
     {
