@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Net.Core.Configuration;
 using Net.Core.Infrastructure;
-using Net.Services.Customers;
+using NetAuth.Services.Customers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿using Net.Domain.Customers;
+﻿using NetAuth.Domain.Customers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

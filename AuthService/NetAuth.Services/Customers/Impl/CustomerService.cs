@@ -1,7 +1,7 @@
 ﻿using Net.Data;
 using Net.Data.Repository;
-using Net.Domain.Customers;
-using Net.Services.Customers;
+using NetAuth.Domain.Customers;
+using NetAuth.Services.Customers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

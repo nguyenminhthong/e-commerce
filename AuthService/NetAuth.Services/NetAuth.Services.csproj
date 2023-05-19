@@ -12,7 +12,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\Net.Core\Net.Core.csproj" />
-    <ProjectReference Include="..\..\Net.Services\NetOrder.Services.csproj" />
+    <ProjectReference Include="..\..\Libraries\Net.Data\Net.Data.csproj" />
+    <ProjectReference Include="..\..\OrderService\NetOrder.Domain\NetOrder.Domain.csproj" />
+    <ProjectReference Include="..\NetAuth.Domain\NetAuth.Domain.csproj" />
   </ItemGroup>
 
 </Project>
