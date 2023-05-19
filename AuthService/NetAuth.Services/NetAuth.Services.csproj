@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\Net.Core\Net.Core.csproj" />
-    <ProjectReference Include="..\..\Net.Services\Net.Services.csproj" />
+    <ProjectReference Include="..\..\Net.Services\NetOrder.Services.csproj" />
   </ItemGroup>
 
 </Project>

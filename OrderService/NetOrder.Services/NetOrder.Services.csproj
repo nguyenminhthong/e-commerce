@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<NoWarn>CS8602</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Libraries\Net.Core\Net.Core.csproj" />
+	  <ProjectReference Include="..\..\Libraries\Net.Data\Net.Data.csproj" />
+	  <ProjectReference Include="..\NetOrder.Domain\NetOrder.Domain.csproj" />
+	</ItemGroup>
+</Project>
