@@ -30,7 +30,7 @@ namespace Net.APICore.Validator
             }
         }
 
-        private ErrorModel ErrorMapping(KeyValuePair<String, ModelStateEntry> error)
+        private ErrorModel ErrorMapping(KeyValuePair<string, ModelStateEntry?> error)
         {
             return new ErrorModel(error.Key, error.Value.Errors.Select(x => x.ErrorMessage).FirstOrDefault() ?? "");
         }
