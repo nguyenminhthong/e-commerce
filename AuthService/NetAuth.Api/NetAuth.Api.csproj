@@ -12,6 +12,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\Net.APICore\Net.APICore.csproj" />
+    <ProjectReference Include="..\..\Libraries\Net.Core\Net.Core.csproj" />
+    <ProjectReference Include="..\..\Libraries\Net.Data\Net.Data.csproj" />
+    <ProjectReference Include="..\..\Libraries\Net.Event\Net.Event.csproj" />
+    <ProjectReference Include="..\NetAuth.Domain\NetAuth.Domain.csproj" />
+    <ProjectReference Include="..\NetAuth.Services\NetAuth.Services.csproj" />
   </ItemGroup>
 
 </Project>

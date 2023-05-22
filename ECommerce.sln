@@ -33,6 +33,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetOrder.Domain", "OrderSer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetOrder.Services", "OrderService\NetOrder.Services\NetOrder.Services.csproj", "{44682DCA-0DC3-46E3-B51D-54C4EEFF678A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShipmentService", "ShipmentService", "{374DC93B-9670-4A6D-A378-C33644FB62FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetShipment.Api", "ShipmentService\NetShipment.Api\NetShipment.Api.csproj", "{2A89FEBE-A24A-4316-8803-2F4BD9CDD26B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,10 @@ Global
 		{44682DCA-0DC3-46E3-B51D-54C4EEFF678A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44682DCA-0DC3-46E3-B51D-54C4EEFF678A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44682DCA-0DC3-46E3-B51D-54C4EEFF678A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A89FEBE-A24A-4316-8803-2F4BD9CDD26B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A89FEBE-A24A-4316-8803-2F4BD9CDD26B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A89FEBE-A24A-4316-8803-2F4BD9CDD26B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A89FEBE-A24A-4316-8803-2F4BD9CDD26B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +112,7 @@ Global
 		{24B35439-2004-4121-9395-8C177DD1DCBE} = {CF828C5D-037A-4F3D-AA69-4C0684DD6DD1}
 		{A7FF3269-430B-4340-8FC1-6FE861AA8FB1} = {CF828C5D-037A-4F3D-AA69-4C0684DD6DD1}
 		{44682DCA-0DC3-46E3-B51D-54C4EEFF678A} = {CF828C5D-037A-4F3D-AA69-4C0684DD6DD1}
+		{2A89FEBE-A24A-4316-8803-2F4BD9CDD26B} = {374DC93B-9670-4A6D-A378-C33644FB62FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB177AAD-4087-4697-95E5-0301445E921C}
