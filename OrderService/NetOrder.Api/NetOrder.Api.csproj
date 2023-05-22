@@ -31,6 +31,7 @@
 	  <ProjectReference Include="..\..\Libraries\Net.Assembly\Net.Assembly.csproj" />
 	  <ProjectReference Include="..\..\Libraries\Net.Core\Net.Core.csproj" />
 	  <ProjectReference Include="..\..\Libraries\Net.Data\Net.Data.csproj" />
+	  <ProjectReference Include="..\..\Libraries\NetAuth.GrpcClients\NetAuth.GrpcClient.csproj" />
 	  <ProjectReference Include="..\NetOrder.Domain\NetOrder.Domain.csproj" />
 	  <ProjectReference Include="..\NetOrder.Services\NetOrder.Services.csproj" />
 	</ItemGroup>

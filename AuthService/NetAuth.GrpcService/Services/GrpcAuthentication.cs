@@ -1,4 +1,5 @@
-﻿using GrpcService;
+﻿using Grpc.Core;
+using GrpcServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,10 @@ namespace NetAuth.GrpcServices.Services
 {
     public class GrpcAuthentication : GrpcAuthService.GrpcAuthServiceBase
     {
-        public GrpcAuthentication() { 
-        
-        }
-
         #region Services
-
-        public async Task<TokenReply> GenerateToken(TokenRequest request)
+        public override Task<TokenReply> GenerateToken(TokenRequest request, ServerCallContext context)
         {
-
-            return await Task.FromResult(new TokenReply
+            return Task.FromResult(new TokenReply
             {
                 AccessToken = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
             });

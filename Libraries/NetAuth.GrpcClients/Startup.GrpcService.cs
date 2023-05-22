@@ -10,6 +10,7 @@ using Net.Core.Configuration;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Net.Assembly;
 using Grpc.Net.Client;
+using Grpc.Core;
 
 namespace NetAuth.GrpcClient
 {
@@ -21,10 +22,16 @@ namespace NetAuth.GrpcClient
         {
             var _api = Singleton<AppSettings>.Instance.Get<ApiConfig>();
 
-            if (_api.EnableGrpc)
+            if (_api.EnableGrpcClient)
             {
                 var _grpcSetting = Singleton<AppSettings>.Instance.Get<GrpcSettings>();
-
+                //var chanel = GrpcChannel.ForAddress(_grpcSetting.NetAuthService, new GrpcChannelOptions
+                //{
+                //    Credentials = ChannelCredentials.Create(new SslCredentials(), CallCredentials.FromInterceptor((ctx, metadata) =>
+                //    {
+                //        return Task.CompletedTask;
+                //    }))
+                //});
                 var chanel = GrpcChannel.ForAddress(_grpcSetting.NetAuthService);
                 services.AddSingleton(chanel);
             }

@@ -1,5 +1,6 @@
-﻿using Grpc.Net.Client;
-using GrpcServices;
+﻿
+using Grpc.Net.Client;
+using GrpcClientServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Net.APICore.Controller;
@@ -11,20 +12,27 @@ namespace NetOrder.Api.Controllers
     {
         #region Variable
         private readonly GrpcChannel _grpcChanel;
-        private readonly GrpcSettings _grpcSettings;
         #endregion
 
-        public StoreController(GrpcChannel grpcChannel, GrpcSettings grpcSettings) 
+        public StoreController(GrpcChannel grpcChannel) 
         {
             _grpcChanel = grpcChannel;
-            _grpcSettings = grpcSettings;
         }
-
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return await Json();
+            var _client = new GrpcAuthService.GrpcAuthServiceClient(_grpcChanel);
+
+            var response = await _client.GenerateTokenAsync(new TokenRequest
+            {
+                IsGuest = true,
+                Password = "$admin",
+                UserName = "user",
+                RememberMe = false
+            });
+
+            return await Json(response.AccessToken);
         }
     }
 }

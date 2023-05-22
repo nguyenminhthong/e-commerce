@@ -22,7 +22,6 @@
 		<ProjectReference Include="..\Net.Assembly\Net.Assembly.csproj" />
 		<ProjectReference Include="..\Net.Caching\Net.Caching.csproj" />
 		<ProjectReference Include="..\Net.Core\Net.Core.csproj" />
-		<ProjectReference Include="..\NetAuth.GrpcClients\NetAuth.GrpcClient.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -23,5 +23,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Libraries\Net.Core\Net.Core.csproj" />
+		<ProjectReference Include="..\NetAuth.Services\NetAuth.Services.csproj" />
 	</ItemGroup>
 </Project>
