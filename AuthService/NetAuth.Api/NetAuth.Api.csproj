@@ -16,6 +16,7 @@
     <ProjectReference Include="..\..\Libraries\Net.Data\Net.Data.csproj" />
     <ProjectReference Include="..\..\Libraries\Net.Event\Net.Event.csproj" />
     <ProjectReference Include="..\NetAuth.Domain\NetAuth.Domain.csproj" />
+    <ProjectReference Include="..\NetAuth.GrpcService\NetAuth.GrpcServices.csproj" />
     <ProjectReference Include="..\NetAuth.Services\NetAuth.Services.csproj" />
   </ItemGroup>
 

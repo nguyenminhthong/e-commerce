@@ -6,11 +6,15 @@ namespace Net.Core.Configuration
 {
     public class ApiConfig : IConfig
     {
-        public bool EnableSwagger { get; set; }
+        public bool EnableGrpcServer { get; set; } = false;
 
-        public bool EnableCache { get; set; }
+        public bool EnableGrpcClient { get; set; } = false;
 
-        public bool EnableDapper { get; set; }
+        public bool EnableSwagger { get; set; } = true;
+
+        public bool EnableCache { get; set; } = true;
+
+        public bool EnableDapper { get; set; } = true;
 
         public int CacheTime { get; set; } = 60;
 
