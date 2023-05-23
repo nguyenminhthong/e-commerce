@@ -12,10 +12,14 @@ namespace Net.Data.Repository
 {
     internal class ReadRepository<TEntity> : BaseRepository<TEntity>, IReadRepository<TEntity> where TEntity : BaseEntity
     {
-        #region Ctor
-        public ReadRepository(AppDbContext appDbContext) : base(appDbContext)
-        {
+        #region Variable
+        private readonly IStaticCacheManager _staticCacheManager;
+        #endregion
 
+        #region Ctor
+        public ReadRepository(AppDbContext appDbContext, IStaticCacheManager staticCacheManager) : base(appDbContext)
+        {
+            _staticCacheManager = staticCacheManager;
         }
         #endregion
 
@@ -46,9 +50,22 @@ namespace Net.Data.Repository
             return await query.ToPageListAsync(pageNumber, pageSize);
         }
 
-        public async Task<TEntity> GetByIdAsync(int? id)
+        public async Task<TEntity> GetByIdAsync(int? id, Func<IStaticCacheManager, CacheKey>? getCacheKey = null, bool includeDeleted = true)
         {
-            return await Table.Where(x => x.Id == id).FirstAsync();
+            if (!id.HasValue || id == 0) return null;
+
+            async Task<TEntity> _getEntityAsync()
+            {
+                return await IncludeDetedFilter(Table, includeDeleted).FirstOrDefaultAsync(entity => entity.Id == Convert.ToInt32(id.Value));
+            }
+
+            if (getCacheKey == null) {
+                return await _getEntityAsync();
+            }
+
+            var cacheKey = getCacheKey(_staticCacheManager);
+
+            return await _staticCacheManager.GetAsync(cacheKey, _getEntityAsync);
         }
         #endregion
 

@@ -20,5 +20,7 @@ namespace Net.Core.Configuration
 
         [JsonConverter(typeof(StringEnumConverter))]
         public DistributedCacheType DistributedCacheType { get; set; } = DistributedCacheType.Redis;
+
+        public int TokenExpireTimeMiniutes { get; set; } = 24;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Net.Core;
+using Net.Core.Caching;
 
 namespace Net.Data.Repository
 {
@@ -15,7 +16,7 @@ namespace Net.Data.Repository
 
         #region Method
 
-        Task<TEntity> GetByIdAsync(int? id);
+        Task<TEntity> GetByIdAsync(int? id, Func<IStaticCacheManager, CacheKey>? getCacheKey = null, bool includeDeleted = true);
 
         Task<IEnumerable<TEntity>> GetAllAsync(Func<IQueryable<TEntity>, IQueryable<TEntity>>? func, bool includeDeleted = false);
 

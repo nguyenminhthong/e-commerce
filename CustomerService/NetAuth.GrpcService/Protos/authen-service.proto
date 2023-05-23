@@ -7,12 +7,27 @@ service AuthProtoService {
 }
 
 message AuthRequest {
-	string UserName = 1;
-	string Password = 2;
-	bool IsGuest = 3;
-	bool RememberMe = 4;
+	string username = 1;
+
+	string password = 2;
+
+	bool isguest = 3;
+
+	bool rememberme = 4;
 }
 
+/** Token response */
 message AuthResponse {
-	string AccessToken = 1;
+
+	string access_token = 1;
+
+	string created_at_utc = 2;
+
+	string expires_at_utc = 3;
+
+	string username =  4;
+
+	int32 customer_id = 5;
+
+	string customer_guid = 6;
 }

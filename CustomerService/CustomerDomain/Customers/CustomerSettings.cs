@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomerServices.Authentication
+namespace CustomerDomain.Customers
 {
-    public interface IBearerTokenService
+    public class CustomerSettings
     {
     }
 }

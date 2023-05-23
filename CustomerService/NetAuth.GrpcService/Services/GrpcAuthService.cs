@@ -1,4 +1,6 @@
-﻿using Grpc.Core;
+﻿using CustomerServices.Authentication;
+using CustomerServices.Customers;
+using Grpc.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +11,39 @@ namespace NetAuth.GrpcServices.Services
 {
     public class GrpcAuthService : AuthProtoService.AuthProtoServiceBase
     {
-        #region Services
-        public override Task<AuthResponse> GenerateToken(AuthRequest request, ServerCallContext context)
+        #region Variable
+        private readonly ICustomerService _customerService;
+        private readonly ITokenProviderService _tokenService;
+
+        #endregion
+
+        #region Constructor
+        public GrpcAuthService(
+            ICustomerService customerService,
+            ITokenProviderService providerService)
         {
-            return Task.FromResult(new AuthResponse
+            _customerService = customerService;
+            _tokenService = providerService;
+        }
+
+        #endregion
+
+        #region Services
+        public override async Task<AuthResponse> GenerateToken(AuthRequest request, ServerCallContext context)
+        {
+            var customer = await _customerService.GetCustomerByUserNameOrEmailAsync(request.Username);
+
+            var _ = await _tokenService.GenerateTokenAsync(customer);
+
+            return await Task.FromResult(new AuthResponse
             {
-                AccessToken = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-            });
+                AccessToken = "",
+                Username = "",
+                CustomerId = -1,
+                CustomerGuid = "",
+                CreatedAtUtc = "",
+                ExpiresAtUtc = ""
+            }) ;
         }
         #endregion
     }

@@ -9,7 +9,6 @@ namespace CustomerServices.Customers
 {
     public interface ICustomerService
     {
-
         #region For check token
         Task<bool> IsExistCustomerByEmailOrPhoneNumberAsync(string iEmailOrPhone);
 
@@ -19,6 +18,8 @@ namespace CustomerServices.Customers
         #endregion
 
         Task<Customer> GetCustomerByIdAsync(int id);
+
+        Task<Customer> GetCustomerByUserNameOrEmailAsync(string iUserName);
 
         Task<IEnumerable<Customer>> GetAllCustomersAsync(bool isAll);
     }

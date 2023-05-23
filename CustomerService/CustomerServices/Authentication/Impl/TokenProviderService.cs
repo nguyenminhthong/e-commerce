@@ -8,27 +8,32 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CustomerDomain.Customers;
+using System.Security.Claims;
 
 namespace CustomerServices.Authentication.Impl
 {
     internal class TokenProviderService : ITokenProviderService
     {
         #region Variable
-        private readonly ICustomerService customerService;
+        private readonly ICustomerService _customerService;
+        private readonly AppSettings _appSettings;
         #endregion
 
         #region CTor
-        public TokenProviderService(ICustomerService iCustomerService)
+        public TokenProviderService(
+            AppSettings iAppSettings,
+            ICustomerService iCustomerService)
         {
-            customerService = iCustomerService;
+            _appSettings = iAppSettings;
+            _customerService = iCustomerService;
         }
         #endregion
 
         public async Task<bool> IsValidTokenAsync(string token)
         {
             // get security config from app settings
-            var appSetting = Singleton<AppSettings>.Instance;
-            var _securityConfig = appSetting.Get<SecurityConfig>();
+            var _securityConfig = _appSettings.Get<SecurityConfig>();
 
             var tokenHandle = new JwtSecurityTokenHandler();
 
@@ -51,23 +56,36 @@ namespace CustomerServices.Authentication.Impl
 
                 if (!string.IsNullOrEmpty(userId))
                 {
-                    return await Task.FromResult(true);
-                }
-
-                // Case Guest Signin
-                var userGuest = ClaimsIdentity.Claims.Where(claim => claim.Type.Equals(AuthenticationDefaults.ClaimUserGuid)).FirstOrDefault()?.Value;
-                if (!string.IsNullOrEmpty(userGuest))
-                {
-                    return await customerService.IsExistGuestCustomerAsync(userGuest);
+                    return await _customerService.IsExistCustomerByIdAsync(Int32.Parse(userId));
                 }
             }
             return await Task.FromResult(false);
         }
 
-        public Task<string> GenerateToken()
+        public Task<string> GenerateTokenAsync(Customer iCustomer)
         {
+            // get security config from app settings
+            var _securityConfig = _appSettings.Get<SecurityConfig>();
+            var sysDate = DateTimeOffset.UtcNow;
 
-            return Task.FromResult("");
+            // expire time of token
+            var expirationTime = sysDate.AddMinutes(_appSettings.Get<ApiConfig>().TokenExpireTimeMiniutes);
+
+            var claims = new List<Claim>
+            {
+                new Claim(AuthenticationDefaults.ClaimUserId, iCustomer.Id.ToString()),
+                new Claim(AuthenticationDefaults.ClaimUserGuid, iCustomer.CustomerGuid.ToString()),
+                new Claim(JwtRegisteredClaimNames.Nbf, sysDate.ToUnixTimeSeconds().ToString()),
+                new Claim(JwtRegisteredClaimNames.Exp, expirationTime.ToUnixTimeSeconds().ToString()),
+            };
+
+            var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_securityConfig.SecurityKey)), _securityConfig.Algorithm);
+
+            var token = new JwtSecurityToken(new JwtHeader(signingCredentials), new JwtPayload(claims));
+
+            var accessToken = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return Task.FromResult(accessToken);
         }
     }
 }

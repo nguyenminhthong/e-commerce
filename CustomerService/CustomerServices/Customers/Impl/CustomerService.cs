@@ -45,20 +45,26 @@ namespace CustomerServices.Customers
         #endregion
 
         #region Get Customer Info
-        public async Task<IEnumerable<Customer>> GetAllCustomersAsync(bool isAll)
-        {
-            var customers = new List<Customer>();
-
-            return await Task.FromResult(customers);
-        }
-
+        
         public async Task<Customer> GetCustomerByIdAsync(int id)
         {
             var customer = _customerRepository.GetByIdAsync(id);
 
             //return customer;
             return await Task.FromResult(new Customer());
-        } 
+        }
+
+        public async Task<Customer> GetCustomerByUserNameOrEmailAsync(string iUserName)
+        {
+            return await Task.FromResult(new Customer());
+        }
+
+        public async Task<IEnumerable<Customer>> GetAllCustomersAsync(bool isAll)
+        {
+            var customers = new List<Customer>();
+
+            return await Task.FromResult(customers);
+        }
         #endregion
 
         #region Storage Customer
@@ -86,6 +92,7 @@ namespace CustomerServices.Customers
 
             await Task.CompletedTask;
         }
+
 
         #endregion
     }

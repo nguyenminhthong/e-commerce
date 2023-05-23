@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomerDomain.Customers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,6 @@ namespace CustomerServices.Authentication
     {
         public Task<bool> IsValidTokenAsync(string token);
 
-        public Task<string> GenerateToken();
+        public Task<string> GenerateTokenAsync(Customer customer);
     }
 }
