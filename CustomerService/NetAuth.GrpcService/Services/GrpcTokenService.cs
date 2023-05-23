@@ -18,7 +18,7 @@ namespace NetAuth.GrpcServices.Services
         {
             _tokenService = providerService;
         }
-        public override async Task<TokenReply> IsValidTokenAsync(TokenRequest request, ServerCallContext context)
+        public override async Task<TokenReply> IsValidToken(TokenRequest request, ServerCallContext context)
         {
             var result = await _tokenService.IsValidTokenAsync(request.Token);
 

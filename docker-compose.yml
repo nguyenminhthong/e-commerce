@@ -1,9 +1,9 @@
 version: '3.6'
 services:
-  auth-service:
+  customer-service:
     build: 
-      dockerfile: Dockerfile.Auth
-    container_name: auth-service
+      dockerfile: Dockerfile.Customer
+    container_name: customer-service
     ports:
       - "32771:80"
       - "32770:443"

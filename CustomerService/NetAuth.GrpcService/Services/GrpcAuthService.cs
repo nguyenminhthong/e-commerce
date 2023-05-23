@@ -10,7 +10,7 @@ namespace NetAuth.GrpcServices.Services
     public class GrpcAuthService : AuthProtoService.AuthProtoServiceBase
     {
         #region Services
-        public override Task<AuthResponse> GenerateToken(TokenRequest request, ServerCallContext context)
+        public override Task<AuthResponse> GenerateToken(AuthRequest request, ServerCallContext context)
         {
             return Task.FromResult(new AuthResponse
             {

@@ -5,9 +5,14 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Protos\token-service.proto" />
+	</ItemGroup>
 	
 	<ItemGroup>
-		<Protobuf Include="Protos\authen.proto" GrpcServices="Server" />
+		<Protobuf Include="Protos\authen-service.proto" GrpcServices="Server" />
+		<Protobuf Include="Protos\token-service.proto" GrpcServices="Server" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -23,5 +28,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Libraries\Net.Core\Net.Core.csproj" />
+		<ProjectReference Include="..\CustomerServices\CustomerServices.csproj" />
 	</ItemGroup>
 </Project>

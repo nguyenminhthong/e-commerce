@@ -11,6 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
+using Net.Core.Configuration;
+using Grpc.Net.Client;
+using NetAuth.GrpcServices;
 
 namespace Net.APICore.Infrastructure.Middleware
 {
@@ -43,25 +46,31 @@ namespace Net.APICore.Infrastructure.Middleware
                 return;
             }
 
-            // Get token from header when request has been send 
-            var token = context.Request.Headers.Authorization.FirstOrDefault<String>();
-
-            // If token is not blank then it's will check valid
-            if (!String.IsNullOrWhiteSpace(token))
+            var _api = Singleton<AppSettings>.Instance.Get<ApiConfig>();
+            if (_api.EnableGrpcClient == true)
             {
-                //var _tokenProviderService = EngineContext.Current.Resolve<ITokenProviderService>();
-                //// check valid token
-                //if (await _tokenProviderService.IsValidTokenAsync(token))
-                //{
-                //    await _next(context);
-                //    return;
-                //}
 
-                // send response data announce to client
-                context.Response.ContentType = "application/json";
-                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                await context.Response.WriteAsJsonAsync(new {message = "Authentication Fail" });
-                return;
+                // Get token from header when request has been send 
+                var token = context.Request.Headers.Authorization.FirstOrDefault<String>();
+
+                // If token is not blank then it's will check valid
+                if (!String.IsNullOrWhiteSpace(token))
+                {
+                    var chanel = EngineContext.Current.Resolve<GrpcChannel>();
+                    var _client = new TokenProtoService.TokenProtoServiceClient(chanel);
+
+                    var res = await _client.IsValidTokenAsync(new TokenRequest { Token = token });
+
+                    // If Check valid has been error then send announce to client
+                    if (res.Result == false)
+                    {
+                        // send response data announce to client
+                        context.Response.ContentType = "application/json";
+                        context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        await context.Response.WriteAsJsonAsync(new { message = "Authentication Fail" });
+                        return;
+                    }
+                }
             }
 
             await _next(context);
