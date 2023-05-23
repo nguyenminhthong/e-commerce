@@ -17,4 +17,8 @@
 		<ProjectReference Include="..\CustomerDomain\CustomerDomain.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Customers\Caching\" />
+	</ItemGroup>
+
 </Project>
