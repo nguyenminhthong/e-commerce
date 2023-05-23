@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Net.APICore.Model.Authentication;
 using Net.Core.Infrastructure;
-using Net.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,13 +49,13 @@ namespace Net.APICore.Infrastructure.Middleware
             // If token is not blank then it's will check valid
             if (!String.IsNullOrWhiteSpace(token))
             {
-                var _tokenProviderService = EngineContext.Current.Resolve<ITokenProviderService>();
-                // check valid token
-                if (await _tokenProviderService.IsValidTokenAsync(token))
-                {
-                    await _next(context);
-                    return;
-                }
+                //var _tokenProviderService = EngineContext.Current.Resolve<ITokenProviderService>();
+                //// check valid token
+                //if (await _tokenProviderService.IsValidTokenAsync(token))
+                //{
+                //    await _next(context);
+                //    return;
+                //}
 
                 // send response data announce to client
                 context.Response.ContentType = "application/json";

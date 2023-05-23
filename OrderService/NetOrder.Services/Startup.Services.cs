@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Net.Core.Infrastructure;
-using Net.Core.Services;
 using NetOrder.Services.Discount;
 using NetOrder.Services.Order;
 using NetOrder.Services.Payments;

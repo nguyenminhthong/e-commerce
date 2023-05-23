@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\Net.APICore\Net.APICore.csproj" />
+    <ProjectReference Include="..\..\Libraries\Net.Core\Net.Core.csproj" />
+    <ProjectReference Include="..\..\Libraries\Net.Data\Net.Data.csproj" />
+    <ProjectReference Include="..\..\Libraries\Net.Event\Net.Event.csproj" />
+    <ProjectReference Include="..\CustomerDomain\CustomerDomain.csproj" />
+    <ProjectReference Include="..\CustomerServices\CustomerServices.csproj" />
+    <ProjectReference Include="..\NetAuth.GrpcService\NetAuth.GrpcServices.csproj" />
+  </ItemGroup>
+
+</Project>

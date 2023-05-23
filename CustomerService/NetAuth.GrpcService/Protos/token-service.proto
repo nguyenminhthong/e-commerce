@@ -1,0 +1,15 @@
+syntax ="proto3";
+
+option csharp_namespace = "NetAuth.GrpcServices";
+
+service TokenProtoService {
+	rpc IsValidTokenAsync(TokenRequest) returns (TokenReply);
+}
+
+message TokenRequest {
+	string token = 1;
+}
+
+message TokenReply {
+	bool result = 1; 
+}
