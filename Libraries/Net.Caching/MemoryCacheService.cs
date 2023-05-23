@@ -24,6 +24,21 @@ namespace Net.Caching
             throw new NotImplementedException();
         }
 
+        public CacheKey PrepareKey(CacheKey cacheKey, params object[] cacheKeyParameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CacheKey PrepareKeyForDefaultCache(CacheKey cacheKey, params object[] cacheKeyParameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CacheKey PrepareKeyForShortTermCache(CacheKey cacheKey, params object[] cacheKeyParameters)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task RemoveAsync(CacheKey cacheKey, params object[] cacheKeyParameters)
         {
             throw new NotImplementedException();

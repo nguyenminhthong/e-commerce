@@ -2,11 +2,6 @@
 using Net.Core;
 using Net.Core.Caching;
 using Net.Data.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Net.Data.Repository
 {
@@ -29,19 +24,65 @@ namespace Net.Data.Repository
 
         #region Method
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync(
-            Func<IQueryable<TEntity>, IQueryable<TEntity>>? func, bool includeDeleted = false)
+
+        public async Task<TEntity> QueryFirtOrDefault(
+                                                Func<IQueryable<TEntity>, IQueryable<TEntity>>? predicate = null
+                                              , Func<IStaticCacheManager, CacheKey>? getCacheKey = null, bool includeDeleted = true)
         {
-            var query = IncludeDetedFilter(Table, includeDeleted);
+            async Task<TEntity> fncFirstOrDefault()
+            {
+                var query = IncludeDetedFilter(Table, includeDeleted);
 
-            query = func != null ? func(query) : query;
+                query = predicate != null ? predicate(query) : query;
 
-            return await query.ToListAsync();
+                return await query.FirstOrDefaultAsync();
+            }
+
+            if (getCacheKey == null)
+            {
+                return await fncFirstOrDefault();
+            }
+
+            var cacheKey = getCacheKey(_staticCacheManager);
+
+            return await _staticCacheManager.GetAsync(cacheKey, fncFirstOrDefault);
+        }
+
+        public async Task<IEnumerable<TEntity>> QueryAsync(
+                                                      Func<IQueryable<TEntity>, IQueryable<TEntity>>? predicate = null
+                                                    , Func<IStaticCacheManager, CacheKey>? getCacheKey = null, bool includeDeleted = true)
+        {
+            async Task<IEnumerable<TEntity>> fncGetEntitiesAsync()
+            {
+                var query = IncludeDetedFilter(Table, includeDeleted);
+
+                query = predicate != null ? predicate(query) : query;
+
+                return await query.ToListAsync();
+            }
+
+            return await GetEntitiesAsync(fncGetEntitiesAsync, getCacheKey);
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllAsync(
+              Func<IQueryable<TEntity>, IQueryable<TEntity>>? func
+            , Func<IStaticCacheManager, CacheKey>? getCacheKey = null, bool includeDeleted = false)
+        {
+            async Task<IEnumerable<TEntity>> fncGetAllAsync()
+            {
+                var query = IncludeDetedFilter(Table, includeDeleted);
+
+                query = func != null ? func(query) : query;
+
+                return await query.ToListAsync();
+            }
+            
+            return await GetEntitiesAsync(fncGetAllAsync, getCacheKey);
         }
 
         public async Task<IPagedList<TEntity>> GetAllPagedAsync(
-            Func<IQueryable<TEntity>, IQueryable<TEntity>>? func
-            , int pageNumber, int pageSize, bool includeDeleted = false)
+              Func<IQueryable<TEntity>, IQueryable<TEntity>>? func
+            , int pageNumber = 1, int pageSize = 20, bool includeDeleted = false)
         {
             var query = IncludeDetedFilter(Table, includeDeleted);
 
@@ -59,7 +100,8 @@ namespace Net.Data.Repository
                 return await IncludeDetedFilter(Table, includeDeleted).FirstOrDefaultAsync(entity => entity.Id == Convert.ToInt32(id.Value));
             }
 
-            if (getCacheKey == null) {
+            if (getCacheKey == null)
+            {
                 return await _getEntityAsync();
             }
 
@@ -67,6 +109,7 @@ namespace Net.Data.Repository
 
             return await _staticCacheManager.GetAsync(cacheKey, _getEntityAsync);
         }
+
         #endregion
 
         #region Private
@@ -81,14 +124,15 @@ namespace Net.Data.Repository
             return query.OfType<ISoftDeletedEntity>().Where(entry => entry.IsDeleted).OfType<TEntity>();
         }
 
-        private async Task<IEnumerable<TEntity>> GetEntitiesAsync(Func<Task<IEnumerable<TEntity>>> fncGetAllAsync, Func<IStaticCacheManager, CacheKey> getCacheKey)
+        private async Task<IEnumerable<TEntity>> GetEntitiesAsync(Func<Task<IEnumerable<TEntity>>> fncGetAllAsync, Func<IStaticCacheManager, CacheKey>? getCacheKey = null)
         {
             if (getCacheKey == null)
                 return await fncGetAllAsync();
 
-            return await fncGetAllAsync();
-        }
+            var cacheKey = getCacheKey(_staticCacheManager);
 
+            return await _staticCacheManager.GetAsync(cacheKey, fncGetAllAsync);
+        }
         #endregion
     }
 }

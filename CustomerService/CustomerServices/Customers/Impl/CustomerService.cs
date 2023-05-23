@@ -7,22 +7,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Net.Core.Utils;
+using Net.Core.Caching;
+using Microsoft.EntityFrameworkCore;
 
 namespace CustomerServices.Customers
 {
     internal class CustomerService : ICustomerService
     {
         #region Field
+        private readonly IStaticCacheManager _staticCacheManager;
+
         private readonly IReadRepository<Customer> _customerRepository;
 
         private readonly IUnitOfWork _unitOfWork;
         #endregion
 
         #region Ctor
-        public CustomerService(IReadRepository<Customer> customerRepository, IUnitOfWork unitOfWork)
+        public CustomerService(IReadRepository<Customer> customerRepository, IUnitOfWork unitOfWork, IStaticCacheManager staticCacheManager)
         {
             _customerRepository = customerRepository;
             _unitOfWork = unitOfWork;
+            _staticCacheManager = staticCacheManager;
         }
         #endregion
 
@@ -45,7 +51,7 @@ namespace CustomerServices.Customers
         #endregion
 
         #region Get Customer Info
-        
+
         public async Task<Customer> GetCustomerByIdAsync(int id)
         {
             var customer = _customerRepository.GetByIdAsync(id);
@@ -56,6 +62,33 @@ namespace CustomerServices.Customers
 
         public async Task<Customer> GetCustomerByUserNameOrEmailAsync(string iUserName)
         {
+            if (Utils.IsPhoneNumber(iUserName))
+            {
+                var customer = _customerRepository.GetAllAsync(query =>
+                {
+                    return from q in query
+                           where q.PhoneNumber == iUserName
+                           select q;
+                }, cache => _staticCacheManager.PrepareKeyForDefaultCache(new CacheKey()));
+            }
+            else if (Utils.IsEmail(iUserName))
+            {
+                var customer = _customerRepository.GetAllAsync(query =>
+                {
+                    return from q in query
+                           where q.Email == iUserName
+                           select q;
+                }, cache => _staticCacheManager.PrepareKeyForDefaultCache(new CacheKey()));
+            }
+            else
+            {
+                var customer = _customerRepository.GetAllAsync(query =>
+                {
+                    return from q in query
+                           where q.Username == iUserName
+                           select q;
+                }, cache => _staticCacheManager.PrepareKeyForDefaultCache(new CacheKey()));
+            }
             return await Task.FromResult(new Customer());
         }
 
